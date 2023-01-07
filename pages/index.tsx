@@ -1,5 +1,4 @@
-import Head from 'next/head'
-
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -11,20 +10,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 style={{color:'white'}}>Hello</h1>
-
-
+        <h1 style={{ color: "white" }}>Hello</h1>
       </main>
     </>
-  )
+  );
 }
 
-
-      // {/* <Image
-      //           src="/vercel.svg"
-      //           alt="Vercel Logo"
-      //           className={styles.vercelLogo}
-      //           width={100}
-      //           height={24}
-      //           priority
-      //         /> */}
+// {/* <Image
+//           src="/vercel.svg"
+//           alt="Vercel Logo"
+//           className={styles.vercelLogo}
+//           width={100}
+//           height={24}
+//           priority
+//         /> */}
