@@ -1,7 +1,5 @@
-export const colors = {};
-
 export const medias = {
-  maxDesktop: 1920,
+  maxDesktop: 1440,
   tablet: 1100,
   phone: 500,
 };

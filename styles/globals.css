@@ -7,6 +7,12 @@
   font-stretch: 75% 125%;
 }
 
+:root{
+  --baseBlack: #101010;
+  --amber: #d30910;
+  --white: #fff;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -17,6 +23,8 @@
 html,
 body {
   font-family: "Hubot Sans", sans-serif;
+  background-color: var(--baseBlack);
+  color: var(--white);
   scroll-behavior: smooth;
   scrollbar-width: thin;
 }
