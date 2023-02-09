@@ -4,14 +4,11 @@ import { medias } from "../../styles/style-variables";
 import StyledLink from "../linkbuttons/StyledLink";
 
 const HeaderComponent = styled.header`
-  max-width: ${medias.maxDesktop + "px"};
-  margin: 0px auto;
   .navigation {
     padding: 25px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     .route_container {
       display: flex;
       align-items: center;
