@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AnimatePresence, LazyMotion, domAnimation, motion } from "framer-motion";
 type Props = {
   children: JSX.Element;
@@ -41,8 +41,8 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Main
             id="main"
             key={router.asPath}
-            initial={{ x: "5%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
+            initial={{ y: "-5%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "5%", opacity: 0 }}
             transition={{ duration: 0.15 }}
           >

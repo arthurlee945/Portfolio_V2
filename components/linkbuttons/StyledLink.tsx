@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
-import { colors } from "../../styles/style-variables";
+import { colors, underline } from "../../styles/style-variables";
 interface Props {
   children: string;
   href: string;
@@ -11,23 +11,9 @@ const LinkStyled = styled(Link)`
   position: relative;
   justify-content: center;
   display: flex;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    height: 2px;
-    width: 0px;
-    transform: translateY(100%);
-    background-color: ${colors.amber};
-    transition: width 250ms;
-  }
-  &:hover {
-    &:after {
-      width: 100%;
-    }
-  }
+  ${underline}
   p {
     transition: font-weight 150ms;
     &:has(+ p + ${"p:hover"}) {
