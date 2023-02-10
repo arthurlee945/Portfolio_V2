@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
-
+import { colors } from "../../styles/style-variables";
 interface Props {
   children: string;
   href: string;
@@ -20,7 +20,7 @@ const LinkStyled = styled(Link)`
     height: 2px;
     width: 0px;
     transform: translateY(100%);
-    background-color: var(--amber);
+    background-color: ${colors.amber};
     transition: width 250ms;
   }
   &:hover {
