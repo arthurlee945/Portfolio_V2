@@ -34,7 +34,7 @@ body{
   overflow-x: hidden;
 
 }
-/*overwride default scroll bar*/
+/*override default scroll bar*/
 body::-webkit-scrollbar {
   appearance: none;
   width: 0.5rem;

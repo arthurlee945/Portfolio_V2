@@ -11,7 +11,7 @@ const LinkStyled = styled(Link)`
   position: relative;
   justify-content: center;
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   ${underline}
   p {
