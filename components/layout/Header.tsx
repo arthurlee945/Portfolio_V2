@@ -25,11 +25,11 @@ const DropdownContainer = styled.div`
     row-gap: 35px;
     padding: 75px 35px 35px;
     background-color: ${colors.darkGray};
-    /* min-width: 250px; */
     overflow: hidden;
     transition: transform 300ms;
     transform-origin: top right;
     border-radius: 15px;
+    /* clip-path: polygon(0 100%, 100% 100%, 100% 45px, 100% 45px, 100% 0, 85% 45px, 0 45px); */
     &[aria-hidden="true"] {
       user-select: none;
       pointer-events: none;
@@ -49,9 +49,6 @@ const DropdownContainer = styled.div`
       }
     }
     @media (max-width: ${medias.tablet + "px"}) {
-      .link-svg {
-        display: none;
-      }
     }
     .link-container {
       transition: opacity 200ms;
