@@ -13,12 +13,12 @@ const SocialLinksContainer = styled.div`
   align-items: center;
   column-gap: 40px;
   transition: opacity 200ms;
-  padding-top: 25px;
+  padding-top: 30px;
   border-top: 1px solid ${colors.white};
   svg {
     fill: ${colors.white};
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     &:hover {
       animation: gh-jiggle 300ms;
       animation-iteration-count: 2;

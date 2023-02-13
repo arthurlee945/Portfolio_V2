@@ -11,11 +11,12 @@ const LinkStyled = styled(Link)`
   position: relative;
   justify-content: center;
   display: flex;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 500;
   ${underline}
   p {
     transition: font-weight 150ms;
+    color: ${colors.white};
     &:has(+ p + ${"p:hover"}) {
       font-weight: 600;
     }

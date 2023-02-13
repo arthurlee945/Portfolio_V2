@@ -1,8 +1,9 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { medias, colors } from "../../styles/style-variables";
-import StyledLink from "../linkbuttons/StyledLink";
-import SocialLinks from "../linkbuttons/SocialLinks";
+import StyledLink from "../buttons/StyledLink";
+import SocialLinks from "../buttons/SocialLinks";
+import LightbulbBtn from "../buttons/LightbulbBtn";
 const HeaderComponent = styled.header`
   .navigation {
     padding: 25px 40px;
@@ -83,7 +84,6 @@ const Header: React.FC = () => {
         <Link href="/">Arthur Lee</Link>
         <DropdownContainer>
           <button
-            className="dropdownButton"
             onClick={() => {
               document
                 .getElementById("route_container")
@@ -95,6 +95,17 @@ const Header: React.FC = () => {
           >
             Placeholder
           </button>
+          <LightbulbBtn
+            className="dropdownButton"
+            onClick={() => {
+              document
+                .getElementById("route_container")
+                ?.setAttribute(
+                  "aria-hidden",
+                  `${document.getElementById("route_container")?.getAttribute("aria-hidden") === "true" ? "false" : "true"}`
+                );
+            }}
+          />
           <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">
             <li className="link-container">
               <StyledLink href="/projects">Projects</StyledLink>
