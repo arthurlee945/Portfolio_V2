@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { medias, colors } from "../../styles/style-variables";
@@ -19,7 +20,7 @@ const DropdownContainer = styled.div`
     z-index: 1;
     position: absolute;
     right: 0;
-    top: 125%;
+    top: 110%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -78,34 +79,18 @@ const DropdownContainer = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    const button = e.target as HTMLButtonElement;
+    const routeContainer = document.getElementById("route_container");
+    button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    routeContainer?.setAttribute("aria-hidden", routeContainer?.getAttribute("aria-hidden") === "true" ? "false" : "true");
+  };
   return (
     <HeaderComponent>
       <div className="navigation">
         <Link href="/">Arthur Lee</Link>
         <DropdownContainer>
-          <button
-            onClick={() => {
-              document
-                .getElementById("route_container")
-                ?.setAttribute(
-                  "aria-hidden",
-                  `${document.getElementById("route_container")?.getAttribute("aria-hidden") === "true" ? "false" : "true"}`
-                );
-            }}
-          >
-            Placeholder
-          </button>
-          <LightbulbBtn
-            className="dropdownButton"
-            onClick={() => {
-              document
-                .getElementById("route_container")
-                ?.setAttribute(
-                  "aria-hidden",
-                  `${document.getElementById("route_container")?.getAttribute("aria-hidden") === "true" ? "false" : "true"}`
-                );
-            }}
-          />
+          <LightbulbBtn className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
           <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">
             <li className="link-container">
               <StyledLink href="/projects">Projects</StyledLink>
