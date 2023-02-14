@@ -8,6 +8,7 @@ export const medias = {
 
 export const colors = {
   lightPurple: "#AFB3F7",
+  yellow: "#ffce00",
   midBlue: "#92BCEA",
   darkBlue: "#7A93AC",
   gray: "#617073",

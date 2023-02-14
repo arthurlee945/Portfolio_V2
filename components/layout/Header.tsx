@@ -31,7 +31,6 @@ const DropdownContainer = styled.div`
     transition: transform 300ms;
     transform-origin: top right;
     border-radius: 15px;
-    /* clip-path: polygon(0 100%, 100% 100%, 100% 45px, 100% 45px, 100% 0, 85% 45px, 0 45px); */
     &[aria-hidden="true"] {
       user-select: none;
       pointer-events: none;
