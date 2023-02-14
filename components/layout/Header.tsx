@@ -77,7 +77,8 @@ const DropdownContainer = styled.div`
       }
       .link-container,
       .social-container {
-        opacity: 0;
+        --default-op: 0.05;
+        opacity: var(--default-op);
         animation: light-reflect 150ms forwards;
         animation-delay: 300ms;
         @keyframes light-reflect {
@@ -85,13 +86,13 @@ const DropdownContainer = styled.div`
             opacity: 0.7;
           }
           20% {
-            opacity: 0;
+            opacity: var(--default-op);
           }
           45% {
             opacity: 0.8;
           }
           65% {
-            opacity: 0;
+            opacity: var(--default-op);
           }
           100% {
             opacity: 1;

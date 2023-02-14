@@ -11,10 +11,10 @@ const SocialLinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  column-gap: 40px;
+  column-gap: 45px;
   transition: opacity 200ms;
   padding-top: 30px;
-  border-top: 1px solid ${colors.white};
+  border-top: 2px solid ${colors.white};
   svg {
     fill: ${colors.white};
     width: 35px;
