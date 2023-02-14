@@ -30,7 +30,7 @@ const BulbButton = styled.button`
     position: absolute;
     height: 40%;
     aspect-ratio: 1/1;
-    background-image: radial-gradient(rgba(255, 207, 75, 0.75), transparent);
+    background-image: radial-gradient(rgba(255, 215, 107, 0.75), transparent);
     border-radius: 50%;
     opacity: 0;
   }

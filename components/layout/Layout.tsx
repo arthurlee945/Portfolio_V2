@@ -4,9 +4,10 @@ import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { AnimatePresence, LazyMotion, domAnimation, motion } from "framer-motion";
-type Props = {
+
+interface Props {
   children: JSX.Element;
-};
+}
 const Main = styled(motion.main)`
   max-width: 1920px;
   margin: 0px auto;
@@ -25,11 +26,11 @@ const Layout: React.FC<Props> = ({ children }) => {
     };
     router.events.on("routeChangeStart", handleRouteChangeStart);
     router.events.on("routeChangeComplete", handleRouteChangeEnded);
-    router.events.on("routeChangeError", handleRouteChangeEnded);
+    router.events.on("routeChangeError", handleRouteChangeError);
     return () => {
       router.events.off("routeChangeStart", handleRouteChangeStart);
       router.events.off("routeChangeComplete", handleRouteChangeEnded);
-      router.events.off("routeChangeError", handleRouteChangeEnded);
+      router.events.off("routeChangeError", handleRouteChangeError);
     };
   }, [router]);
   return (

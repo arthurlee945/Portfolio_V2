@@ -45,8 +45,26 @@ const DropdownContainer = styled.div`
       transform: scale(1);
       .link-container,
       .social-container {
-        opacity: 1;
-        transition-delay: 100ms;
+        opacity: 0;
+        animation: light-reflect 150ms forwards;
+        animation-delay: 300ms;
+        @keyframes light-reflect {
+          from {
+            opacity: 0.7;
+          }
+          20% {
+            opacity: 0;
+          }
+          45% {
+            opacity: 0.8;
+          }
+          65% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
       }
     }
     @media (max-width: ${medias.tablet + "px"}) {
