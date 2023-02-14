@@ -19,13 +19,13 @@ const DropdownContainer = styled.div`
   .route_container {
     z-index: 1;
     position: absolute;
-    right: 0;
-    top: 110%;
+    right: -5px;
+    top: -5px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    row-gap: 35px;
-    padding: 75px 35px 35px;
+    row-gap: 40px;
+    padding: 80px 50px 40px;
     background-color: ${colors.darkGray};
     overflow: hidden;
     transition: transform 300ms;
@@ -43,6 +43,38 @@ const DropdownContainer = styled.div`
     }
     &[aria-hidden="false"] {
       transform: scale(1);
+      overflow: hidden;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 200%;
+        height: 200%;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+        background-image: radial-gradient(#66604d, transparent 70%);
+        transform: translate(calc(50% - 20px), calc(-50% + 20px));
+        opacity: 0;
+        animation: light-flicker 150ms forwards;
+        animation-delay: 300ms;
+        @keyframes light-flicker {
+          from {
+            opacity: 0.1;
+          }
+          20% {
+            opacity: 0;
+          }
+          45% {
+            opacity: 0.15;
+          }
+          65% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 0.2;
+          }
+        }
+      }
       .link-container,
       .social-container {
         opacity: 0;

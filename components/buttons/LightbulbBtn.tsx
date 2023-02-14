@@ -10,6 +10,7 @@ interface BulbProps {
 
 const BulbButton = styled.button`
   --init-ani-dul: 300ms;
+  z-index: 2;
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,10 +29,9 @@ const BulbButton = styled.button`
   &:before {
     content: "";
     position: absolute;
-    height: 40%;
+    height: 100%;
     aspect-ratio: 1/1;
-    background-image: radial-gradient(rgba(255, 215, 107, 0.75), transparent);
-    border-radius: 50%;
+    background-image: radial-gradient(#faf1d5, transparent 40%);
     opacity: 0;
   }
   &[aria-pressed="true"] {
@@ -56,19 +56,19 @@ const BulbButton = styled.button`
       animation-delay: var(--init-ani-dul);
       @keyframes light-bulb-glow {
         from {
-          opacity: 0.45;
+          opacity: 0.15;
         }
         20% {
           opacity: 0;
         }
         45% {
-          opacity: 0.55;
+          opacity: 0.25;
         }
         65% {
           opacity: 0;
         }
         100% {
-          opacity: 0.75;
+          opacity: 0.35;
         }
       }
     }
