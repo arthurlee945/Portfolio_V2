@@ -140,7 +140,7 @@ const Header: React.FC = () => {
       <div className="navigation">
         <Link href="/">Arthur Lee</Link>
         <DropdownContainer>
-          <LightbulbBtn className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
+          <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
           <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">
             <li className="link-container">
               <StyledLink href="/projects">Projects</StyledLink>
