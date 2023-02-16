@@ -11,6 +11,9 @@ const HeaderComponent = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media only screen and (max-width: ${medias.tablet + "px"}) {
+      padding: 0px;
+    }
   }
 `;
 
@@ -100,8 +103,14 @@ const DropdownContainer = styled.div`
         }
       }
     }
-    @media (max-width: ${medias.tablet + "px"}) {
+    @media only screen and (max-width: ${medias.tablet + "px"}) {
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0px;
     }
+
     .link-container {
       transition: opacity 200ms;
       svg {
@@ -130,10 +139,12 @@ const DropdownContainer = styled.div`
 
 const Header: React.FC = () => {
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
+    const elBody = document.getElementsByTagName("body")[0];
     const button = e.target as HTMLButtonElement;
     const routeContainer = document.getElementById("route_container");
     button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "true" ? "false" : "true");
     routeContainer?.setAttribute("aria-hidden", routeContainer?.getAttribute("aria-hidden") === "true" ? "false" : "true");
+    elBody?.classList.toggle("nav-open");
   };
   return (
     <HeaderComponent>
