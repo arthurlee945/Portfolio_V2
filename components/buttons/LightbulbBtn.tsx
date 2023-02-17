@@ -1,6 +1,6 @@
 import { FC, MouseEvent } from "react";
 import styled from "@emotion/styled";
-import { colors } from "../../styles/style-variables";
+import { colors, medias } from "../../styles/style-variables";
 
 interface BulbProps {
   id: string;
@@ -16,6 +16,13 @@ const BulbButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-tap-highlight-color: transparent;
+  @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
+    margin: 20px 25px 0px 0px;
+  }
+  @media only screen and (max-width: ${medias.phone + "px"}) {
+    margin: 10px 10px 0px 0px;
+  }
   > svg {
     display: block;
     width: 50px;
