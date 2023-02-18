@@ -27,7 +27,7 @@ const DropdownContainer = styled.div`
     align-items: flex-start;
     flex-direction: column;
     row-gap: 40px;
-    padding: 80px 50px 40px;
+    padding: 85px 50px 40px;
     background-color: ${colors.darkGray};
     overflow: hidden;
     transition: transform 300ms;
