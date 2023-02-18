@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { colors } from "../../styles/style-variables";
+import { colors, medias } from "../../styles/style-variables";
 interface Social {
   github?: boolean;
   linkedin?: boolean;
@@ -13,12 +13,17 @@ const SocialLinksContainer = styled.div`
   align-items: center;
   column-gap: 45px;
   transition: opacity 200ms;
-  padding-top: 30px;
+  padding-top: 35px;
   border-top: 2px solid ${colors.white};
+  @media only screen and (max-width: ${medias.phone + "px"}) {
+    width: 100%;
+    justify-content: space-around;
+    padding-top: 50px;
+  }
   svg {
     fill: ${colors.white};
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     &:hover {
       animation: gh-jiggle 300ms;
       animation-iteration-count: 2;
