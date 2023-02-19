@@ -9,7 +9,7 @@ const HeaderComponent = styled.header`
   .navigation {
     padding: 25px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     @media only screen and (max-width: ${medias.phone + "px"}) {
       padding: 0px;
@@ -32,7 +32,7 @@ const DropdownContainer = styled.div`
     overflow: hidden;
     transition: transform 300ms;
     transform-origin: top right;
-    border-radius: 15px;
+    border-radius: 8px;
     box-shadow: -6px 8px 12px #0a090536;
     &[aria-hidden="true"] {
       user-select: none;
@@ -152,7 +152,6 @@ const Header: React.FC = () => {
   return (
     <HeaderComponent>
       <div className="navigation">
-        <Link href="/">Arthur Lee</Link>
         <DropdownContainer>
           <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
           <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">

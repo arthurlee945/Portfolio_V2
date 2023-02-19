@@ -24,20 +24,22 @@ const SocialLinksContainer = styled.div`
     fill: ${colors.white};
     width: 36px;
     height: 36px;
+    transition: filter 300ms;
     &:hover {
       animation: gh-jiggle 300ms;
       animation-iteration-count: 2;
       @keyframes gh-jiggle {
         25% {
-          transform: rotate(35deg);
+          transform: translateX(4px);
         }
         50% {
-          transform: rotate(-35deg);
+          transform: translateX(-4px);
         }
         75% {
-          transform: rotate(35deg);
+          transform: translateX(4px);
         }
       }
+      filter: brightness(0.7);
     }
   }
 `;

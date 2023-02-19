@@ -38,6 +38,7 @@ const BulbButton = styled.button`
     aspect-ratio: 1/1;
     background-image: radial-gradient(#faf1d5, transparent 40%);
     opacity: 0;
+    transition: opacity 150ms;
   }
   &[aria-pressed="true"] {
     > svg {
@@ -57,7 +58,7 @@ const BulbButton = styled.button`
       }
     }
     &:before {
-      animation: light-bulb-glow 150ms forwards;
+      animation: light-bulb-glow 150ms;
       animation-delay: var(--init-ani-dul);
       @keyframes light-bulb-glow {
         from {
@@ -76,9 +77,25 @@ const BulbButton = styled.button`
           opacity: 0.35;
         }
       }
+      opacity: 0.35;
+    }
+    &:hover {
+      &:before {
+        opacity: 0.6;
+      }
     }
   }
   &[aria-pressed="false"] {
+    &:hover {
+      > svg {
+        .filament {
+          fill: #fff3c5;
+        }
+      }
+      &:before {
+        opacity: 0.15;
+      }
+    }
   }
 `;
 
