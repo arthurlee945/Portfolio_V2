@@ -22,8 +22,8 @@ const SocialLinksContainer = styled.div`
   }
   svg {
     fill: ${colors.white};
-    width: 36px;
-    height: 36px;
+    width: 35px;
+    height: 35px;
     transition: filter 300ms;
     &:hover {
       animation: gh-jiggle 300ms;
