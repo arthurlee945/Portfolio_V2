@@ -1,10 +1,5 @@
-import FadeIn from "../scrollMotions/FadeIn";
 const Footer: React.FC<{}> = () => {
-  return (
-    <FadeIn element="footer" direction="up">
-      Footer
-    </FadeIn>
-  );
+  return <footer>Footer</footer>;
 };
 
 export default Footer;

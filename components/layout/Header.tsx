@@ -5,6 +5,7 @@ import { medias, colors } from "../../styles/style-variables";
 import StyledLink from "../buttons/StyledLink";
 import SocialLinks from "../buttons/SocialLinks";
 import LightbulbBtn from "../buttons/LightbulbBtn";
+import { useRouter } from "next/router";
 const HeaderComponent = styled.header`
   .navigation {
     padding: 25px 40px;
@@ -141,6 +142,7 @@ const DropdownContainer = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const router = useRouter();
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
     const elBody = document.getElementsByTagName("body")[0];
     const button = e.target as HTMLButtonElement;
@@ -155,15 +157,26 @@ const Header: React.FC = () => {
         <DropdownContainer>
           <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
           <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">
-            <li className="link-container">
-              <StyledLink href="/projects">Projects</StyledLink>
-            </li>
-            <li className="link-container">
-              <StyledLink href="/about">About</StyledLink>
-            </li>
-            <li className="link-container">
-              <StyledLink href="/contact">Contact</StyledLink>
-            </li>
+            {router.asPath !== "/" && (
+              <li className="link-container">
+                <StyledLink href="/">Home</StyledLink>
+              </li>
+            )}
+            {router.asPath !== "/projects" && (
+              <li className="link-container">
+                <StyledLink href="/projects">Projects</StyledLink>
+              </li>
+            )}
+            {router.asPath !== "/about" && (
+              <li className="link-container">
+                <StyledLink href="/about">About</StyledLink>
+              </li>
+            )}
+            {router.asPath !== "/contact" && (
+              <li className="link-container">
+                <StyledLink href="/contact">Contact</StyledLink>
+              </li>
+            )}
             <SocialLinks />
           </ul>
         </DropdownContainer>
