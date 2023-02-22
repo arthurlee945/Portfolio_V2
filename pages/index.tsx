@@ -1,26 +1,15 @@
-import Head from "next/head";
-
+import Seo from "../components/components/Seo";
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Arthur Lee | Developer</title>
-        <meta name="description" content="Arthur Lee Portfolio Homepage" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title="Arthur Lee | Developer"
+        description="Arthur Lee Portfolio Homepage"
+        keywords="developer, chicago, software developer, full-stack, fullstack developer"
+      />
       <main>
         <h1 style={{ color: "white" }}>Hello</h1>
       </main>
     </>
   );
 }
-
-// {/* <Image
-//           src="/vercel.svg"
-//           alt="Vercel Logo"
-//           className={styles.vercelLogo}
-//           width={100}
-//           height={24}
-//           priority
-//         /> */}
