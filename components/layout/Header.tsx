@@ -144,11 +144,11 @@ const Header: React.FC = () => {
   const router = useRouter();
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
     const elBody = document.getElementsByTagName("body")[0];
+    elBody?.classList.toggle("nav-open");
     const button = e.target as HTMLButtonElement;
     const routeContainer = document.getElementById("route_container");
     button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "true" ? "false" : "true");
     routeContainer?.setAttribute("aria-hidden", routeContainer?.getAttribute("aria-hidden") === "true" ? "false" : "true");
-    elBody?.classList.toggle("nav-open");
   };
   return (
     <HeaderComponent>
