@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { colors, underline } from "../../styles/style-variables";
 interface Props {
   children: string;

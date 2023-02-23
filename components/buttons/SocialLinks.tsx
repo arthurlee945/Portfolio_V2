@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import Link from "next/link";
 import { colors, medias } from "../../styles/style-variables";
 interface Social {

@@ -1,6 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect } from "react";
 import { AnimatePresence, LazyMotion, domAnimation, motion } from "framer-motion";

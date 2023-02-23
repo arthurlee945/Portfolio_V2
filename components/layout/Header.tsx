@@ -1,6 +1,5 @@
 import { MouseEvent } from "react";
-import Link from "next/link";
-import styled from "@emotion/styled";
+import styled from "styled-components";
 import { medias, colors } from "../../styles/style-variables";
 import StyledLink from "../buttons/StyledLink";
 import SocialLinks from "../buttons/SocialLinks";

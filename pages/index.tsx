@@ -7,9 +7,7 @@ export default function Home() {
         description="Arthur Lee Portfolio Homepage"
         keywords="developer, chicago, software developer, full-stack, fullstack developer"
       />
-      <main>
-        <h1 style={{ color: "white" }}>Hello</h1>
-      </main>
+      <h1 style={{ color: "white" }}>Hello</h1>
     </>
   );
 }

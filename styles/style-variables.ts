@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from "styled-components";
 
 export const medias = {
   maxDesktop: 1920,
