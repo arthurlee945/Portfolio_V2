@@ -17,9 +17,6 @@ const BulbButton = styled.button`
   justify-content: center;
   align-items: center;
   -webkit-tap-highlight-color: transparent;
-  @media only screen and (max-width: ${medias.phone + "px"}) {
-    margin: 10px 10px 0px 0px;
-  }
   > svg {
     display: block;
     width: 50px;

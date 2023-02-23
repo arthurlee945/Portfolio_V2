@@ -1,4 +1,5 @@
 import Seo from "../components/components/Seo";
+import HomePageHero from "../components/components/Homepage/HomePageHero";
 export default function Home() {
   return (
     <>
@@ -7,7 +8,7 @@ export default function Home() {
         description="Arthur Lee Portfolio Homepage"
         keywords="developer, chicago, software developer, full-stack, fullstack developer"
       />
-      <h1 style={{ color: "white" }}>Hello</h1>
+      <HomePageHero />
     </>
   );
 }

@@ -35,3 +35,12 @@ export const underline = css`
     }
   }
 `;
+export const defaultContainerStyle = css`
+  padding: 0px 20px;
+  @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
+    padding: 0px 10px;
+  }
+  @media only screen and (max-width: ${medias.phone + "px"}) {
+    padding: 0px 10px;
+  }
+`;

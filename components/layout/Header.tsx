@@ -6,18 +6,28 @@ import SocialLinks from "../buttons/SocialLinks";
 import LightbulbBtn from "../buttons/LightbulbBtn";
 import { useRouter } from "next/router";
 const HeaderComponent = styled.header`
+  z-index: 1;
   .navigation {
-    padding: 25px 40px;
+    position: absolute;
+    top: 15px;
+    right: 30px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      padding: 0px;
+      width: 100%;
+      top: 10px;
+      right: 10px;
     }
   }
 `;
 const DropdownContainer = styled.div`
   position: relative;
+  @media only screen and (max-width: ${medias.phone + "px"}) {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
   .route_container {
     z-index: 1;
     position: absolute;
@@ -104,14 +114,14 @@ const DropdownContainer = styled.div`
       }
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      top: 0;
-      right: 0;
-      width: 100vw;
+      top: -10px;
+      right: -10px;
+      width: 100%;
       height: 100vh;
       border-radius: 0px;
       justify-content: space-between;
       padding: max(15vh, 100px) 50px;
-      min-height: 500px;
+      min-height: 400px;
       box-shadow: none;
     }
     .link-container {
@@ -143,8 +153,8 @@ const DropdownContainer = styled.div`
 const Header: React.FC = () => {
   const router = useRouter();
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    const elBody = document.getElementsByTagName("body")[0];
-    elBody?.classList.toggle("nav-open");
+    const innerContainer = document.getElementById("__next");
+    innerContainer?.classList.toggle("nav-open");
     const button = e.target as HTMLButtonElement;
     const routeContainer = document.getElementById("route_container");
     button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "true" ? "false" : "true");
