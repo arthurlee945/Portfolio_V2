@@ -13,9 +13,9 @@ export const colors = {
   darkBlue: "#7A93AC",
   gray: "#617073",
   darkGray: "#262c2e",
-  richBlack: "#171A21",
+  richBlack: "#0b0d10",
   amber: "#d30910",
-  white: "#FAF9F6;",
+  white: "#FAF9F6",
 };
 
 export const underline = css`
@@ -35,12 +35,26 @@ export const underline = css`
     }
   }
 `;
-export const defaultContainerStyle = css`
-  padding: 0px 20px;
-  @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-    padding: 0px 10px;
-  }
-  @media only screen and (max-width: ${medias.phone + "px"}) {
-    padding: 0px 10px;
+export const highlightEffect = css`
+  position: relative;
+  display: flex;
+  p {
+    transition: font-weight 150ms;
+    color: ${colors.white};
+    &:has(+ p + ${"p:hover"}) {
+      font-weight: 600;
+    }
+    &:has(+ ${"p:hover"}) {
+      font-weight: 700;
+    }
+    &:hover {
+      font-weight: 800;
+      & + p {
+        font-weight: 700;
+        & + p {
+          font-weight: 600;
+        }
+      }
+    }
   }
 `;

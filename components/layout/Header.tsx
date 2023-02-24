@@ -1,23 +1,30 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState, FC, useEffect } from "react";
 import styled from "styled-components";
-import { medias, colors } from "../../styles/style-variables";
-import StyledLink from "../buttons/StyledLink";
-import SocialLinks from "../buttons/SocialLinks";
-import LightbulbBtn from "../buttons/LightbulbBtn";
 import { useRouter } from "next/router";
+import { medias, colors } from "../../styles/style-variables";
+import HightlightLink from "../reusable/HighlightLink";
+import SocialLinks from "./headerParts/SocialLinks";
+import LightbulbBtn from "./headerParts/LightbulbBtn";
+
 const HeaderComponent = styled.header`
   z-index: 1;
+  position: sticky;
+  top: 10px;
+  right: 10px;
   .navigation {
     position: absolute;
-    top: 15px;
-    right: 30px;
+    top: 10px;
+    right: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    @media only screen and (max-width: ${medias.phone + "px"}) {
-      width: 100%;
-      top: 10px;
+    @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
       right: 10px;
+    }
+    @media only screen and (max-width: ${medias.phone + "px"}) {
+      width: calc(100% + 20px);
+      top: 0px;
+      right: 0px;
     }
   }
 `;
@@ -150,40 +157,58 @@ const DropdownContainer = styled.div`
   }
 `;
 
-const Header: React.FC = () => {
+const Header: FC = () => {
+  const [ariaState, setAriaState] = useState({
+    ariaHidden: true,
+    ariaPressed: false,
+  });
   const router = useRouter();
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    const innerContainer = document.getElementById("__next");
+    const innerContainer = document.querySelector("body");
     innerContainer?.classList.toggle("nav-open");
-    const button = e.target as HTMLButtonElement;
-    const routeContainer = document.getElementById("route_container");
-    button.setAttribute("aria-pressed", button.getAttribute("aria-pressed") === "true" ? "false" : "true");
-    routeContainer?.setAttribute("aria-hidden", routeContainer?.getAttribute("aria-hidden") === "true" ? "false" : "true");
+    setAriaState((currState) => ({
+      ...currState,
+      ariaPressed: !currState.ariaPressed,
+      ariaHidden: !currState.ariaHidden,
+    }));
   };
+  useEffect(() => {
+    const routeChageStartHandle = () => {
+      setAriaState((currState) => ({
+        ...currState,
+        ariaHidden: true,
+        ariaPressed: false,
+      }));
+    };
+    router.events.on("routeChangeStart", routeChageStartHandle);
+    return () => {
+      router.events.off("routeChangeStart", routeChageStartHandle);
+    };
+  }, [router]);
   return (
     <HeaderComponent>
       <div className="navigation">
         <DropdownContainer>
-          <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={false} />
-          <ul id="route_container" className="route_container" role="presentation" aria-hidden="true">
+          <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={ariaState.ariaPressed} />
+          <ul id="route_container" className="route_container" role="presentation" aria-hidden={ariaState.ariaHidden}>
             {router.asPath !== "/" && (
               <li className="link-container">
-                <StyledLink href="/">Home</StyledLink>
+                <HightlightLink href="/">Home</HightlightLink>
               </li>
             )}
             {router.asPath !== "/projects" && (
               <li className="link-container">
-                <StyledLink href="/projects">Projects</StyledLink>
+                <HightlightLink href="/projects">Projects</HightlightLink>
               </li>
             )}
             {router.asPath !== "/about" && (
               <li className="link-container">
-                <StyledLink href="/about">About</StyledLink>
+                <HightlightLink href="/about">About</HightlightLink>
               </li>
             )}
             {router.asPath !== "/contact" && (
               <li className="link-container">
-                <StyledLink href="/contact">Contact</StyledLink>
+                <HightlightLink href="/contact">Contact</HightlightLink>
               </li>
             )}
             <SocialLinks />

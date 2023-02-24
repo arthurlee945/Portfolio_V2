@@ -1,6 +1,6 @@
 import { FC, MouseEvent } from "react";
 import styled from "styled-components";
-import { colors, medias } from "../../styles/style-variables";
+import { colors, medias } from "../../../styles/style-variables";
 
 interface BulbProps {
   id: string;

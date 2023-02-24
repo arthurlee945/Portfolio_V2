@@ -16,16 +16,10 @@ const Main = styled(motion.main)`
 const Layout: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   useEffect(() => {
-    const navMenuClose = () => {
-      const dropdownMenu = document.getElementById("route_container");
-      const dropdownBtn = document.getElementById("dropdown-btn");
-      dropdownMenu?.setAttribute("aria-hidden", "true");
-      dropdownBtn?.setAttribute("aria-pressed", "false");
-    };
     const handleRouteChangeStart = (url: string) => {
       if (url !== router.asPath) {
-        navMenuClose();
       }
+      console.log(router.asPath, url);
     };
     const handleRouteChangeEnded = () => {};
     const handleRouteChangeError = (err: string) => {

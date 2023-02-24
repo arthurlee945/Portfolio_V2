@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { colors, medias } from "../../styles/style-variables";
+import { colors, medias } from "../../../styles/style-variables";
 interface Social {
   github?: boolean;
   linkedin?: boolean;
@@ -26,9 +26,9 @@ const SocialLinksContainer = styled.div`
     height: 35px;
     transition: filter 300ms;
     &:hover {
-      animation: gh-jiggle 300ms;
+      animation: gh-wiggle 300ms;
       animation-iteration-count: 2;
-      @keyframes gh-jiggle {
+      @keyframes gh-wiggle {
         25% {
           transform: translateX(4px);
         }

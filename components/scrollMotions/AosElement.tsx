@@ -7,7 +7,7 @@ interface Props extends HTMLMotionProps<"div"> {
   children?: ReactNode;
 }
 
-const AosElement: FC<Props> = ({ element = "div", direction = "up", children, transition = {}, viewport }) => {
+const AosElement: FC<Props> = ({ element = "div", direction = "up", children, transition = {}, viewport = {} }) => {
   const directionAni = {
     up: { y: "50%" },
     down: { y: "-50%" },
@@ -18,7 +18,7 @@ const AosElement: FC<Props> = ({ element = "div", direction = "up", children, tr
     style: { opacity: 0, ...directionAni[direction] },
     whileInView: { opacity: 1, y: 0 },
     transition: transition,
-    viewport: viewport,
+    viewport: { amount: 0.7, ...viewport },
   };
 
   switch (element) {

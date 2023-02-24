@@ -5,15 +5,17 @@ interface Props {
   children: string;
   href: string;
   target?: string;
+  underline?: boolean;
+  className?: string;
 }
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(Link)<{ addUnderline: boolean }>`
   position: relative;
   justify-content: center;
   display: flex;
   font-size: 1.4rem;
   font-weight: 500;
-  ${underline}
+  ${({ addUnderline }) => addUnderline && underline}
   p {
     transition: font-weight 150ms;
     color: ${colors.white};
@@ -35,14 +37,14 @@ const LinkStyled = styled(Link)`
   }
 `;
 
-const StyledLink: React.FC<Props> = ({ children, href, target }) => {
+const HighlightLink: React.FC<Props> = ({ children, href, className, target = "_self", underline = false }) => {
   return (
-    <LinkStyled href={href} target={target ? target : "_self"}>
+    <LinkStyled href={href} target={target} addUnderline={!!underline} className={className}>
       {children.split("").map((letter, i) => {
-        return <p key={`${letter}-${i}`}>{letter}</p>;
+        return <p key={`${letter}-${i}`}>{letter === " " ? <>&nbsp;</> : letter}</p>;
       })}
     </LinkStyled>
   );
 };
 
-export default StyledLink;
+export default HighlightLink;
