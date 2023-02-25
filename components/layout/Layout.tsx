@@ -19,7 +19,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     const handleRouteChangeStart = (url: string) => {
       if (url !== router.asPath) {
       }
-      console.log(router.asPath, url);
+      console.log(router.asPath, url, url !== "/");
     };
     const handleRouteChangeEnded = () => {};
     const handleRouteChangeError = (err: string) => {

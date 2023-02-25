@@ -40,19 +40,19 @@ export const highlightEffect = css`
   display: flex;
   p {
     transition: font-weight 150ms;
-    color: ${colors.white};
+    color: inherit;
     &:has(+ p + ${"p:hover"}) {
-      font-weight: 600;
-    }
-    &:has(+ ${"p:hover"}) {
       font-weight: 700;
     }
-    &:hover {
+    &:has(+ ${"p:hover"}) {
       font-weight: 800;
+    }
+    &:hover {
+      font-weight: 900;
       & + p {
-        font-weight: 700;
+        font-weight: 800;
         & + p {
-          font-weight: 600;
+          font-weight: 700;
         }
       }
     }

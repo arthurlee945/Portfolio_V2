@@ -9,22 +9,20 @@ import LightbulbBtn from "./headerParts/LightbulbBtn";
 const HeaderComponent = styled.header`
   z-index: 1;
   position: sticky;
-  top: 10px;
-  right: 10px;
-  .navigation {
-    position: absolute;
+  top: 20px;
+  @media only screen and (max-width: ${medias.phone + "px"}) {
     top: 10px;
-    right: 20px;
+  }
+  .navigation {
+    padding: 20px 20px 0px 0px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-      right: 10px;
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      width: calc(100% + 20px);
-      top: 0px;
-      right: 0px;
+      width: 100%;
+      padding: 10px 10px 0px 0px;
     }
   }
 `;
@@ -55,6 +53,9 @@ const DropdownContainer = styled.div`
       user-select: none;
       pointer-events: none;
       transform: scale(0);
+      @media only screen and (max-width: ${medias.phone + "px"}) {
+        transform: scaleY(0);
+      }
       .link-container,
       .social-container {
         opacity: 0;
@@ -64,6 +65,9 @@ const DropdownContainer = styled.div`
     &[aria-hidden="false"] {
       transform: scale(1);
       overflow: hidden;
+      @media only screen and (max-width: ${medias.phone + "px"}) {
+        transform: scaleY(1);
+      }
       &:before {
         position: absolute;
         content: "";
@@ -121,10 +125,10 @@ const DropdownContainer = styled.div`
       }
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      top: -10px;
+      top: -21px;
       right: -10px;
-      width: 100%;
-      height: 100vh;
+      width: calc(100% + 10px);
+      height: calc(100vh + 1px);
       border-radius: 0px;
       justify-content: space-between;
       padding: max(15vh, 100px) 50px;
