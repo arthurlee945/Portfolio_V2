@@ -1,28 +1,46 @@
 import { MouseEvent, useState, FC, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { useRouter } from "next/router";
+import { throttle } from "../../utils/throttle-functions";
 import { medias, colors } from "../../styles/style-variables";
 import HightlightLink from "../reusable/HighlightLink";
 import SocialLinks from "./headerParts/SocialLinks";
 import LightbulbBtn from "./headerParts/LightbulbBtn";
 
-const HeaderComponent = styled.header`
+const HeaderComponent = styled.header<{ sticky: boolean }>`
   z-index: 1;
   position: sticky;
-  top: 20px;
+  top: -1px;
+  ${({ sticky }) => {
+    if (sticky) {
+      return css`
+        .navigation {
+          transform: translateY(0%);
+        }
+      `;
+    } else {
+      return css`
+        .navigation {
+          transform: translateY(-100%);
+        }
+      `;
+    }
+  }}
   @media only screen and (max-width: ${medias.phone + "px"}) {
-    top: 10px;
   }
   .navigation {
-    padding: 20px 20px 0px 0px;
+    padding: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    transition: transform 300ms;
+    background-color: ${colors.richBlack};
+    border-bottom: 1px solid ${colors.white};
     @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
       width: 100%;
-      padding: 10px 10px 0px 0px;
+      padding: 10px;
     }
   }
 `;
@@ -31,7 +49,7 @@ const DropdownContainer = styled.div`
   @media only screen and (max-width: ${medias.phone + "px"}) {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    width: calc(100% - 2px);
   }
   .route_container {
     z-index: 1;
@@ -125,9 +143,9 @@ const DropdownContainer = styled.div`
       }
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      top: -21px;
+      top: -10px;
       right: -10px;
-      width: calc(100% + 10px);
+      width: calc(100% + 20px);
       height: calc(100vh + 1px);
       border-radius: 0px;
       justify-content: space-between;
@@ -162,15 +180,17 @@ const DropdownContainer = styled.div`
 `;
 
 const Header: FC = () => {
-  const [ariaState, setAriaState] = useState({
+  const [navState, setNavState] = useState({
     ariaHidden: true,
     ariaPressed: false,
+    sticky: true,
   });
   const router = useRouter();
+
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
     const innerContainer = document.querySelector("body");
     innerContainer?.classList.toggle("nav-open");
-    setAriaState((currState) => ({
+    setNavState((currState) => ({
       ...currState,
       ariaPressed: !currState.ariaPressed,
       ariaHidden: !currState.ariaHidden,
@@ -178,23 +198,48 @@ const Header: FC = () => {
   };
   useEffect(() => {
     const routeChageStartHandle = () => {
-      setAriaState((currState) => ({
+      setNavState((currState) => ({
         ...currState,
         ariaHidden: true,
         ariaPressed: false,
       }));
     };
+    let prevPosY = 0,
+      navVisible = true;
+    const handleNavSticky = throttle(() => {
+      const navHeight = window.innerWidth > 1100 ? 120 : window.innerWidth > 500 ? 110 : 80;
+      const posY = window.scrollY;
+      if (posY > navHeight && posY > prevPosY) {
+        setNavState((currState) => ({
+          ...currState,
+          sticky: false,
+          ariaHidden: true,
+          ariaPressed: false,
+        }));
+        navVisible = false;
+      } else {
+        setNavState((currState) => ({
+          ...currState,
+          sticky: true,
+        }));
+        navVisible = true;
+      }
+      prevPosY = posY;
+    }, 50);
     router.events.on("routeChangeStart", routeChageStartHandle);
+    window.addEventListener("scroll", handleNavSticky);
     return () => {
       router.events.off("routeChangeStart", routeChageStartHandle);
+      window.removeEventListener("scroll", handleNavSticky);
     };
   }, [router]);
+  console.log(navState.sticky);
   return (
-    <HeaderComponent>
+    <HeaderComponent sticky={navState.sticky}>
       <div className="navigation">
         <DropdownContainer>
-          <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={ariaState.ariaPressed} />
-          <ul id="route_container" className="route_container" role="presentation" aria-hidden={ariaState.ariaHidden}>
+          <LightbulbBtn id="dropdown-btn" className="dropdownButton" onClick={handleDropdownBtn} ariaPressed={navState.ariaPressed} />
+          <ul id="route_container" className="route_container" role="presentation" aria-hidden={navState.ariaHidden}>
             {router.asPath !== "/" && (
               <li className="link-container">
                 <HightlightLink href="/">Home</HightlightLink>

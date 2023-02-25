@@ -111,7 +111,7 @@ const HomePageHero: FC<HeroProps> = ({}) => {
         </div>
         <div className="hero-image-container">
           <div className="hero-image">
-            <Image src="/assets/profile-image.png" alt="profile picture" fill quality={88} />
+            <Image src="/assets/profile-image.png" alt="profile picture" fill sizes="100%" priority={true} quality={88} />
           </div>
         </div>
       </div>
