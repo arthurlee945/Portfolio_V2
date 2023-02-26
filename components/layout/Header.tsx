@@ -29,7 +29,7 @@ const HeaderComponent = styled.header<{ sticky: boolean }>`
   @media only screen and (max-width: ${medias.phone + "px"}) {
   }
   .navigation {
-    padding: 20px;
+    padding: 15px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -40,7 +40,7 @@ const HeaderComponent = styled.header<{ sticky: boolean }>`
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
     }
   }
 `;
@@ -62,10 +62,12 @@ const DropdownContainer = styled.div`
     row-gap: 40px;
     padding: 85px 50px 40px;
     background-color: ${colors.darkGray};
+    background-color: ${colors.richBlack};
+    border: 1px solid ${colors.white};
     overflow: hidden;
     transition: transform 300ms;
     transform-origin: top right;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: -6px 8px 12px #0a090536;
     &[aria-hidden="true"] {
       user-select: none;
@@ -207,22 +209,22 @@ const Header: FC = () => {
     let prevPosY = 0,
       navVisible = true;
     const handleNavSticky = throttle(() => {
-      const navHeight = window.innerWidth > 1100 ? 120 : window.innerWidth > 500 ? 110 : 80;
+      // const navHeight = window.innerWidth > 1100 ? 110 : window.innerWidth > 500 ? 100 : 64;
       const posY = window.scrollY;
-      if (posY > navHeight && posY > prevPosY) {
+      if (posY === 0) return;
+      if (posY > prevPosY) {
         setNavState((currState) => ({
           ...currState,
           sticky: false,
           ariaHidden: true,
           ariaPressed: false,
         }));
-        navVisible = false;
+        document.querySelector("body")?.classList.remove("nav-open");
       } else {
         setNavState((currState) => ({
           ...currState,
           sticky: true,
         }));
-        navVisible = true;
       }
       prevPosY = posY;
     }, 50);
@@ -233,7 +235,6 @@ const Header: FC = () => {
       window.removeEventListener("scroll", handleNavSticky);
     };
   }, [router]);
-  console.log(navState.sticky);
   return (
     <HeaderComponent sticky={navState.sticky}>
       <div className="navigation">
