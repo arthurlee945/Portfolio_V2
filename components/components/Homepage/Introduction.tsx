@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface IntroductionProps {}
 
 const IntroductionContainer = styled.div`
-  height: 90vh;
+  height: 200vh;
 `;
 const Introduction: FC<IntroductionProps> = ({}) => {
   return <IntroductionContainer>Introduction</IntroductionContainer>;

@@ -190,8 +190,7 @@ const Header: FC = () => {
   const router = useRouter();
 
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    const innerContainer = document.querySelector("body");
-    innerContainer?.classList.toggle("nav-open");
+    document.querySelector("body")?.classList.toggle("nav-open");
     setNavState((currState) => ({
       ...currState,
       ariaPressed: !currState.ariaPressed,
@@ -205,6 +204,7 @@ const Header: FC = () => {
         ariaHidden: true,
         ariaPressed: false,
       }));
+      document.querySelector("body")?.classList.remove("nav-open");
     };
     let prevPosY = 0,
       navVisible = true;

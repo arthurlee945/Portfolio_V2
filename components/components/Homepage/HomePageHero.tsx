@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { colors, medias } from "../../../styles/style-variables";
@@ -115,8 +115,9 @@ const HeroContainer = styled.div`
     }
   }
 `;
-type DirType = { dir: "up" | "down" | "left" | "right"; delay: number };
+type DirType = { dir: "up" | "down" | "left" | "right" };
 const HomePageHero: FC<HeroProps> = ({}) => {
+  const heroRef = useRef(null);
   const [scrollDir, setScrollDir] = useState<{
     left: DirType;
     center: DirType;
@@ -124,28 +125,27 @@ const HomePageHero: FC<HeroProps> = ({}) => {
   }>({
     left: {
       dir: "left",
-      delay: 0,
     },
-    center: { dir: "up", delay: 0 },
-    right: { dir: "right", delay: 0 },
+    center: { dir: "up" },
+    right: { dir: "right" },
   });
+
   useEffect(() => {
-    let prevWidth = window.innerWidth;
+    let prevWidth: number | undefined = undefined;
     const handleScrollDir = () => {
       let currentWidth = window.innerWidth;
-
-      if ((currentWidth > 1100 && prevWidth > 1100) || (currentWidth <= 1100 && prevWidth <= 1100)) return;
+      if (prevWidth && ((currentWidth > 1100 && prevWidth > 1100) || (currentWidth <= 1100 && prevWidth <= 1100))) return;
       if (currentWidth <= 1100) {
         setScrollDir((currDir) => ({
           ...currDir,
-          center: { dir: "right", delay: 0.33 },
-          right: { dir: "left", delay: 0.66 },
+          center: { dir: "right" },
+          right: { dir: "left" },
         }));
       } else {
         setScrollDir((currDir) => ({
           ...currDir,
-          center: { dir: "up", delay: 0 },
-          right: { dir: "right", delay: 0 },
+          center: { dir: "up" },
+          right: { dir: "right" },
         }));
       }
       prevWidth = currentWidth;
@@ -157,9 +157,9 @@ const HomePageHero: FC<HeroProps> = ({}) => {
     };
   }, []);
   return (
-    <HeroContainer>
+    <HeroContainer ref={heroRef}>
       <div className="hero-container">
-        <MotionScrollDiv className="hero-content--left" scrollDir={scrollDir.left.dir} delay={scrollDir.left.delay}>
+        <MotionScrollDiv className="hero-content--left" scrollDir={scrollDir.left.dir}>
           <h1 className="hero-header">
             Hi, My
             <br />
@@ -169,12 +169,12 @@ const HomePageHero: FC<HeroProps> = ({}) => {
             I am a Developer based in Chicago
           </HighlightLink>
         </MotionScrollDiv>
-        <MotionScrollDiv className="hero-content--center" scrollDir={scrollDir.center.dir} delay={scrollDir.center.delay}>
+        <MotionScrollDiv className="hero-content--center" scrollDir={scrollDir.center.dir}>
           <div className="hero-image">
             <Image src="/assets/profile-image.png" alt="profile picture" fill sizes="100%" priority={true} quality={88} />
           </div>
         </MotionScrollDiv>
-        <MotionScrollDiv className="hero-content--right" scrollDir={scrollDir.right.dir} delay={scrollDir.right.delay}>
+        <MotionScrollDiv className="hero-content--right" scrollDir={scrollDir.right.dir}>
           <h1 className="hero-header">
             Hi, My
             <br />
