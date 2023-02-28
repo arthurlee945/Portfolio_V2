@@ -49,9 +49,9 @@ const Layout: React.FC<Props> = ({ children }) => {
           >
             {children}
           </Main>
+          <Footer />
         </AnimatePresence>
       </LazyMotion>
-      <Footer />
     </>
   );
 };

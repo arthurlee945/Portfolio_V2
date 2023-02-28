@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { colors, underline, highlightEffect } from "../../styles/style-variables";
+import { underline, highlightEffect } from "../../styles/style-variables";
 interface Props {
   children: string;
   href: string;
@@ -21,9 +21,15 @@ const LinkStyled = styled(Link)<{ addunderline: "true" | "false" }>`
 
 const HighlightLink: React.FC<Props> = ({ children, href, className, target = "_self", underline = true }) => {
   return (
-    <LinkStyled href={href} target={target} addunderline={`${underline}`} className={className}>
-      {children.split("").map((letter, i) => {
-        return <p key={`${letter}-${i}`}>{letter === " " ? <>&nbsp;</> : letter}</p>;
+    <LinkStyled href={href} target={target} addunderline={`${underline}`} className={className} aria-label={children}>
+      {children.split(" ").map((letter, i) => {
+        return (
+          <span key={`${letter}-${i}`}>
+            {letter.split("").map((letter, i) => (
+              <p key={`${letter}-${i}`}>{letter}</p>
+            ))}
+          </span>
+        );
       })}
     </LinkStyled>
   );

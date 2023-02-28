@@ -69,6 +69,24 @@ const DropdownContainer = styled.div`
     transform-origin: top right;
     border-radius: 5px;
     box-shadow: -6px 8px 12px #0a090536;
+    &:before {
+      position: absolute;
+      content: "";
+      width: 200%;
+      height: 200%;
+      top: 0;
+      right: 0;
+      pointer-events: none;
+      background-image: radial-gradient(#66604d, transparent 70%);
+      transform: translate(calc(50% - 20px), calc(-50% + 20px));
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+    .link-container,
+    .social-container {
+      opacity: 0.03;
+      transition: opacity 200ms;
+    }
     &[aria-hidden="true"] {
       user-select: none;
       pointer-events: none;
@@ -89,59 +107,13 @@ const DropdownContainer = styled.div`
         transform: scaleY(1);
       }
       &:before {
-        position: absolute;
-        content: "";
-        width: 200%;
-        height: 200%;
-        top: 0;
-        right: 0;
-        pointer-events: none;
-        background-image: radial-gradient(#66604d, transparent 70%);
-        transform: translate(calc(50% - 20px), calc(-50% + 20px));
-        opacity: 0;
-        animation: light-flicker 150ms forwards;
-        animation-delay: 300ms;
-        @keyframes light-flicker {
-          from {
-            opacity: 0.1;
-          }
-          20% {
-            opacity: 0;
-          }
-          45% {
-            opacity: 0.15;
-          }
-          65% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 0.2;
-          }
-        }
+        opacity: 0.2;
+        transition-delay: 300ms;
       }
       .link-container,
       .social-container {
-        --default-op: 0.05;
-        opacity: var(--default-op);
-        animation: light-reflect 150ms forwards;
-        animation-delay: 300ms;
-        @keyframes light-reflect {
-          from {
-            opacity: 0.7;
-          }
-          20% {
-            opacity: var(--default-op);
-          }
-          45% {
-            opacity: 0.8;
-          }
-          65% {
-            opacity: var(--default-op);
-          }
-          100% {
-            opacity: 1;
-          }
-        }
+        opacity: 1;
+        transition-delay: 300ms;
       }
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
@@ -156,7 +128,6 @@ const DropdownContainer = styled.div`
       box-shadow: none;
     }
     .link-container {
-      transition: opacity 200ms;
       svg {
         fill: white;
         width: 30px;

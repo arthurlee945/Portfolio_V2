@@ -44,7 +44,7 @@ const BulbButton = styled.button`
     aspect-ratio: 1/1;
     background-image: radial-gradient(#faf1d5, transparent 40%);
     opacity: 0;
-    transition: opacity 150ms;
+    transition: opacity 200ms;
   }
   &[aria-pressed="true"] {
     > svg {
@@ -64,25 +64,6 @@ const BulbButton = styled.button`
       }
     }
     &:before {
-      animation: light-bulb-glow 150ms;
-      animation-delay: var(--init-ani-dul);
-      @keyframes light-bulb-glow {
-        from {
-          opacity: 0.15;
-        }
-        20% {
-          opacity: 0;
-        }
-        45% {
-          opacity: 0.25;
-        }
-        65% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0.35;
-        }
-      }
       opacity: 0.35;
     }
     &:hover {

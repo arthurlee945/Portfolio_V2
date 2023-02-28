@@ -8,7 +8,7 @@ import MotionScrollDiv from "../../reusable/MotionScrollDiv";
 interface HeroProps {}
 
 const HeroContainer = styled.div`
-  padding: 100px min(5%, 75px);
+  padding: 125px min(5%, 75px);
   border-bottom: 1px solid ${colors.white};
   overflow: hidden;
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
@@ -101,7 +101,7 @@ const HeroContainer = styled.div`
     }
     .hero-subHeader {
       justify-content: space-between;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: width 300ms;
       color: ${colors.richBlack};
@@ -123,11 +123,9 @@ const HomePageHero: FC<HeroProps> = ({}) => {
     center: DirType;
     right: DirType;
   }>({
-    left: {
-      dir: "left",
-    },
+    left: { dir: "down" },
     center: { dir: "up" },
-    right: { dir: "right" },
+    right: { dir: "down" },
   });
 
   useEffect(() => {
@@ -138,14 +136,16 @@ const HomePageHero: FC<HeroProps> = ({}) => {
       if (currentWidth <= 1100) {
         setScrollDir((currDir) => ({
           ...currDir,
+          left: { dir: "left" },
           center: { dir: "right" },
           right: { dir: "left" },
         }));
       } else {
         setScrollDir((currDir) => ({
           ...currDir,
+          left: { dir: "down" },
           center: { dir: "up" },
-          right: { dir: "right" },
+          right: { dir: "down" },
         }));
       }
       prevWidth = currentWidth;
@@ -175,13 +175,9 @@ const HomePageHero: FC<HeroProps> = ({}) => {
           </div>
         </MotionScrollDiv>
         <MotionScrollDiv className="hero-content--right" scrollDir={scrollDir.right.dir}>
-          <h1 className="hero-header">
-            Hi, My
-            <br />
-            Name is <b>Arthur</b>.
-          </h1>
-          <HighlightLink href="/about" underline={false} className="hero-subHeader">
-            I am a Developer based in Chicago
+          <h2 className="hero-header">Let's work together.</h2>
+          <HighlightLink href="/contact" underline={false} className="hero-subHeader">
+            You can talk to me by clicking here!
           </HighlightLink>
         </MotionScrollDiv>
       </div>

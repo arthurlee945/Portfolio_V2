@@ -11,7 +11,7 @@ const MotionScrollDiv: FC<MSDProps> = ({ children, scrollDir = "down", className
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["0 0%", "1 0%"],
+    offset: ["0 0", "1 0"],
   });
   const scrollPercentage = useTransform(
     scrollYProgress,

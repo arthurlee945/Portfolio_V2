@@ -38,21 +38,26 @@ export const underline = css`
 export const highlightEffect = css`
   position: relative;
   display: flex;
-  p {
-    transition: font-weight 150ms;
-    color: inherit;
-    &:has(+ p + ${"p:hover"}) {
-      font-weight: 700;
-    }
-    &:has(+ ${"p:hover"}) {
-      font-weight: 800;
-    }
-    &:hover {
-      font-weight: 900;
-      & + p {
+  column-gap: 0.3rem;
+  span {
+    display: flex;
+    flex-direction: row;
+    p {
+      transition: font-weight 150ms;
+      color: inherit;
+      &:has(+ p + ${"p:hover"}) {
+        font-weight: 600;
+      }
+      &:has(+ ${"p:hover"}) {
+        font-weight: 700;
+      }
+      &:hover {
         font-weight: 800;
         & + p {
           font-weight: 700;
+          & + p {
+            font-weight: 600;
+          }
         }
       }
     }
