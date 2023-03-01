@@ -22,6 +22,7 @@ export const underline = css`
   &:after {
     content: "";
     position: absolute;
+    left: 0;
     bottom: 0;
     height: 2px;
     width: 0px;

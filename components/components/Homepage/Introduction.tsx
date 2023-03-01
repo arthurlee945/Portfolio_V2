@@ -5,6 +5,8 @@ import { m, useScroll, useSpring, useTransform } from "framer-motion";
 import { colors, medias, highlightEffect } from "../../../styles/style-variables";
 import AosElement from "../../reusable/AosElement";
 import Languages from "./parts/Languages";
+import HighlightLink from "components/reusable/HighlightLink";
+import ImageZoom from "./parts/ImageZoom";
 interface IntroductionProps {}
 
 const IntroductionContainer = styled.div`
@@ -80,6 +82,10 @@ const IntroductionContainer = styled.div`
       font-weight: 700;
       margin: 10px 0px;
     }
+    .info-link {
+      width: fit-content;
+      text-transform: uppercase;
+    }
   }
 `;
 const Introduction: FC<IntroductionProps> = ({}) => {
@@ -88,7 +94,7 @@ const Introduction: FC<IntroductionProps> = ({}) => {
     target: ref,
     offset: ["0 0.5", "0 0"],
   });
-  const springScroll = useSpring(scrollYProgress, { stiffness: 8, damping: 6 });
+  const springScroll = useSpring(scrollYProgress, { stiffness: 8, damping: 4 });
   const scrollProgress = useTransform(springScroll, [0, 1], ["0%", "-50%"]);
 
   const ctaText = "Let's create something amazing together. Get in touch with me today to discuss your project.";
@@ -108,6 +114,7 @@ const Introduction: FC<IntroductionProps> = ({}) => {
             Ready to see what I can do? Check out my portfolio now to explore my skills and experience. From web development to mobile apps,
             I've got you covered. Let's work together to bring your ideas to life. Visit my portfolio page and let's get started!
           </p>
+          <ImageZoom />
         </AosElement>
         <AosElement direction="left" transition={{ delay: 0.25 }} className="info-box">
           <h2 className="info-header" aria-label="About Me!">

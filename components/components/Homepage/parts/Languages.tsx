@@ -23,8 +23,9 @@ const LanguagesContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    row-gap: 25px;
+    row-gap: 10px;
     width: 10%;
+    font-size: 0.95rem;
     @media only screen and (max-width: ${medias.phone + "px"}) {
       width: 25%;
     }
@@ -32,6 +33,9 @@ const LanguagesContainer = styled.div`
       fill: ${colors.white};
       width: max(75%, 60px);
       height: fit-content;
+      @media only screen and (max-width: ${medias.phone + "px"}) {
+        width: max(65%, 60px);
+      }
     }
   }
 `;
