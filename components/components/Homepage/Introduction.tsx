@@ -1,12 +1,12 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import styled from "styled-components";
 import HighlightText from "../../reusable/HighlightText";
-import { m, useScroll, useSpring, useTransform } from "framer-motion";
 import { colors, medias, highlightEffect } from "../../../styles/style-variables";
 import AosElement from "../../reusable/AosElement";
 import Languages from "./parts/Languages";
-import HighlightLink from "components/reusable/HighlightLink";
-import ImageZoom from "./parts/ImageZoom";
+import ShapeZoom from "./parts/ShapeZoom";
+import ScrollBoard from "./parts/ScrollBoard";
+import ArrowLink from "components/reusable/ArrowLink";
 interface IntroductionProps {}
 
 const IntroductionContainer = styled.div`
@@ -15,31 +15,6 @@ const IntroductionContainer = styled.div`
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
   }
   @media only screen and (max-width: ${medias.phone + "px"}) {
-  }
-  .repeating-cta {
-    padding: 20px 15px;
-    width: fit-content;
-    @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-      padding: 15px 10px;
-    }
-    @media only screen and (max-width: ${medias.phone + "px"}) {
-      padding: 10px;
-    }
-    .repeating-text {
-      position: relative;
-      font-size: 4.5rem;
-      cursor: default;
-      column-gap: 2rem;
-      text-transform: uppercase;
-      @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-        font-size: 3.5rem;
-        column-gap: 1.5rem;
-      }
-      @media only screen and (max-width: ${medias.phone + "px"}) {
-        font-size: 2.5rem;
-        column-gap: 1rem;
-      }
-    }
   }
   .introduction-infos {
     border-top: 1px solid ${colors.white};
@@ -60,7 +35,7 @@ const IntroductionContainer = styled.div`
       width: 40%;
       display: flex;
       flex-direction: column;
-      row-gap: 20px;
+      row-gap: 25px;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
         width: 100%;
         row-gap: 20px;
@@ -83,28 +58,14 @@ const IntroductionContainer = styled.div`
       margin: 10px 0px;
     }
     .info-link {
-      width: fit-content;
       text-transform: uppercase;
     }
   }
 `;
 const Introduction: FC<IntroductionProps> = ({}) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 0.5", "0 0"],
-  });
-  const springScroll = useSpring(scrollYProgress, { stiffness: 8, damping: 4 });
-  const scrollProgress = useTransform(springScroll, [0, 1], ["0%", "-50%"]);
-
-  const ctaText = "Let's create something amazing together. Get in touch with me today to discuss your project.";
   return (
     <IntroductionContainer>
-      <m.div ref={ref} className="repeating-cta" style={{ x: scrollProgress, y: 0 }}>
-        <HighlightText className="repeating-text" data-text={ctaText}>
-          {ctaText + " " + ctaText}
-        </HighlightText>
-      </m.div>
+      <ScrollBoard>Let's create something amazing together. Get in touch with me today to discuss your project.</ScrollBoard>
       <div className="introduction-infos">
         <AosElement direction="right" className="info-box">
           <h2 className="info-header" aria-label="Let's Do This!">
@@ -114,7 +75,10 @@ const Introduction: FC<IntroductionProps> = ({}) => {
             Ready to see what I can do? Check out my portfolio now to explore my skills and experience. From web development to mobile apps,
             I've got you covered. Let's work together to bring your ideas to life. Visit my portfolio page and let's get started!
           </p>
-          <ImageZoom />
+          <ShapeZoom />
+          <ArrowLink className="info-link" href="/contact">
+            Contact Me!
+          </ArrowLink>
         </AosElement>
         <AosElement direction="left" transition={{ delay: 0.25 }} className="info-box">
           <h2 className="info-header" aria-label="About Me!">
@@ -127,6 +91,9 @@ const Introduction: FC<IntroductionProps> = ({}) => {
           </p>
           <p className="info-language">Here are some languages I use:</p>
           <Languages />
+          <ArrowLink className="info-link" href="/about">
+            Learn About Me!
+          </ArrowLink>
         </AosElement>
       </div>
     </IntroductionContainer>

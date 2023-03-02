@@ -33,11 +33,21 @@ const HeroContainer = styled.div`
     @media only screen and (max-width: ${medias.phone + "px"}) {
       row-gap: 25px;
     }
+    .hero-content--center,
+    .hero-content--left,
+    .hero-content--right {
+      width: max(30%, 415px);
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      overflow: hidden;
+      @media only screen and (max-width: ${medias.tablet + "px"}) {
+        width: 100%;
+      }
+    }
     .hero-content--left,
     .hero-content--right {
       background-color: ${colors.white};
-      width: max(30%, 415px);
-      aspect-ratio: 1/1;
+
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -54,13 +64,10 @@ const HeroContainer = styled.div`
     }
     .hero-content--center {
       --init-pos: translateY(-100%);
-      width: max(30%, 415px);
       border: 1px solid ${colors.white};
-      aspect-ratio: 1/1;
       padding: 25px;
       animation: content-intro 500ms;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
-        width: 100%;
         --init-pos: translateX(100%);
       }
       @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
