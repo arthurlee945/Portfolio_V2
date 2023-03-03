@@ -1,6 +1,7 @@
-import { MouseEvent, useState, FC, useEffect } from "react";
+import { MouseEvent, useState, FC, useEffect, useContext } from "react";
 import styled, { css } from "styled-components";
 import { useRouter } from "next/router";
+import { GlobalContext } from "utils/GlobalContext";
 import { throttle } from "../../utils/throttle-functions";
 import { medias, colors } from "../../styles/style-variables";
 import HightlightLink from "../reusable/HighlightLink";
@@ -120,7 +121,7 @@ const DropdownContainer = styled.div`
       top: -10px;
       right: -10px;
       width: calc(100% + 20px);
-      height: calc(100vh + 1px);
+      height: calc(100vh + 5px);
       border-radius: 0px;
       justify-content: space-between;
       padding: max(15vh, 100px) 50px;
@@ -153,6 +154,7 @@ const DropdownContainer = styled.div`
 `;
 
 const Header: FC = () => {
+  const globalCtx = useContext(GlobalContext);
   const [navState, setNavState] = useState({
     ariaHidden: true,
     ariaPressed: false,
@@ -161,7 +163,7 @@ const Header: FC = () => {
   const router = useRouter();
 
   const handleDropdownBtn = (e: MouseEvent<HTMLButtonElement>) => {
-    document.querySelector("body")?.classList.toggle("nav-open");
+    globalCtx.setNavStatus("toggle");
     setNavState((currState) => ({
       ...currState,
       ariaPressed: !currState.ariaPressed,
@@ -174,8 +176,9 @@ const Header: FC = () => {
         ...currState,
         ariaHidden: true,
         ariaPressed: false,
+        sticky: true,
       }));
-      document.querySelector("body")?.classList.remove("nav-open");
+      globalCtx.setNavStatus("closed");
     };
     let prevPosY = 0,
       navVisible = true;
@@ -190,7 +193,7 @@ const Header: FC = () => {
           ariaHidden: true,
           ariaPressed: false,
         }));
-        document.querySelector("body")?.classList.remove("nav-open");
+        globalCtx.setNavStatus("closed");
       } else {
         setNavState((currState) => ({
           ...currState,

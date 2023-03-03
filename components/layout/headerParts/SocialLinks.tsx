@@ -25,7 +25,7 @@ const SocialLinksContainer = styled.div`
     width: 35px;
     height: 35px;
     transition: filter 300ms;
-    /* &:hover {
+    &:hover {
       animation: gh-wiggle 300ms;
       animation-iteration-count: 2;
       @keyframes gh-wiggle {
@@ -40,7 +40,7 @@ const SocialLinksContainer = styled.div`
         }
       }
       filter: brightness(0.7);
-    } */
+    }
   }
 `;
 const SocialLinks: FC<Social> = ({ github = true, linkedin = true, email = true }) => {

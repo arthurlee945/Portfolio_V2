@@ -1,6 +1,7 @@
 import Seo from "../components/components/Seo";
 import HomePageHero from "../components/components/Homepage/HomePageHero";
 import Introduction from "../components/components/Homepage/Introduction";
+import RecentWorks from "components/components/Homepage/RecentWorks";
 export default function Home() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function Home() {
       />
       <HomePageHero />
       <Introduction />
+      <RecentWorks />
     </>
   );
 }

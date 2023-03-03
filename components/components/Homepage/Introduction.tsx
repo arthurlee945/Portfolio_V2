@@ -35,7 +35,7 @@ const IntroductionContainer = styled.div`
       width: 40%;
       display: flex;
       flex-direction: column;
-      row-gap: 25px;
+      row-gap: 30px;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
         width: 100%;
         row-gap: 20px;
@@ -59,13 +59,14 @@ const IntroductionContainer = styled.div`
     }
     .info-link {
       text-transform: uppercase;
+      margin-top: 10px;
     }
   }
 `;
 const Introduction: FC<IntroductionProps> = ({}) => {
   return (
     <IntroductionContainer>
-      <ScrollBoard>Let's create something amazing together. Get in touch with me today to discuss your project.</ScrollBoard>
+      <ScrollBoard>Let's Create Something Extraordinary! Contact Me Today and Let's Get Started.</ScrollBoard>
       <div className="introduction-infos">
         <AosElement direction="right" className="info-box">
           <h2 className="info-header" aria-label="Let's Do This!">

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { colors, medias } from "../../../styles/style-variables";
 import HighlightLink from "../../reusable/HighlightLink";
 import MotionScrollDiv from "../../reusable/MotionScrollDiv";
-
+import HeroShowcase from "./parts/HeroShowcase";
 interface HeroProps {}
 
 const HeroContainer = styled.div`
@@ -65,7 +65,7 @@ const HeroContainer = styled.div`
     .hero-content--center {
       --init-pos: translateY(-100%);
       border: 1px solid ${colors.white};
-      padding: 25px;
+      /* padding: 25px; */
       animation: content-intro 500ms;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
         --init-pos: translateX(100%);
@@ -177,9 +177,7 @@ const HomePageHero: FC<HeroProps> = ({}) => {
           </HighlightLink>
         </MotionScrollDiv>
         <MotionScrollDiv className="hero-content--center" scrollDir={scrollDir.center.dir}>
-          <div className="hero-image">
-            <Image src="/assets/profile-image.png" alt="profile picture" fill sizes="100%" priority={true} quality={88} />
-          </div>
+          <HeroShowcase />
         </MotionScrollDiv>
         <MotionScrollDiv className="hero-content--right" scrollDir={scrollDir.right.dir}>
           <h2 className="hero-header">Let's work together.</h2>

@@ -1,0 +1,28 @@
+{
+  "data":{
+    "work":[{
+      "id":"classic-mechanics",
+      "name":"Classic Mechanics",
+      "img":"/project-images/classic-mechanics.jpg",
+      "url":"https://www.classicmechanicsgarage.com/",
+      "tools":["Next.js","Headless CMS", "PostgreSQL"],
+      "desc":"Website created for client who deals with antique car restoration."
+    },{
+      "id":"",
+      "name":"",
+      "img":"",
+      "url":"",
+      "tools":[],
+      "desc":""
+    }],
+    "personal":[{
+      "id":"",
+      "name":"",
+      "img":"",
+      "url":"",
+      "repo":"",
+      "tools":[],
+      "desc":""
+    }]
+  }
+}
