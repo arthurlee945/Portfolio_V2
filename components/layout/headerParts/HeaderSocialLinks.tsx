@@ -6,6 +6,7 @@ interface Social {
   github?: boolean;
   linkedin?: boolean;
   email?: boolean;
+  className?: string;
 }
 const SocialLinksContainer = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const SocialLinksContainer = styled.div`
     padding-top: 50px;
   }
   svg {
+    display: flex;
     fill: ${colors.white};
     width: 35px;
     height: 35px;
@@ -43,9 +45,9 @@ const SocialLinksContainer = styled.div`
     }
   }
 `;
-const SocialLinks: FC<Social> = ({ github = true, linkedin = true, email = true }) => {
+const HeaderSocialLink: FC<Social> = ({ github = true, linkedin = true, email = true, className }) => {
   return (
-    <SocialLinksContainer className="social-container">
+    <SocialLinksContainer className={`social-container ${className}`}>
       {github && (
         <Link className="link-svg" href="https://github.com/arthurlee945" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -66,7 +68,7 @@ const SocialLinks: FC<Social> = ({ github = true, linkedin = true, email = true 
       )}
       {email && (
         <Link className="link-svg" href="mailto:arthur.lee945@gmail.com" target="_blank">
-          <svg height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.294 75.294">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.294 75.294">
             <g>
               <path
                 d="M66.097,12.089h-56.9C4.126,12.089,0,16.215,0,21.286v32.722c0,5.071,4.126,9.197,9.197,9.197h56.9
@@ -85,4 +87,4 @@ const SocialLinks: FC<Social> = ({ github = true, linkedin = true, email = true 
   );
 };
 
-export default SocialLinks;
+export default HeaderSocialLink;

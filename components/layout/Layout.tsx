@@ -41,9 +41,9 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Main
             id="main"
             key={router.asPath}
-            initial={{ y: "-5%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            exit={{ y: "5%", opacity: 0 }}
+            initial={{ x: "-5%", opacity: 0 }}
+            animate={{ x: "0%", opacity: 1, transitionEnd: { x: "0%", opacity: 1 } }}
+            exit={{ y: "5%", opacity: 0, transitionEnd: { y: "5%", opacity: 0 } }}
             transition={{ duration: 0.15 }}
           >
             {children}

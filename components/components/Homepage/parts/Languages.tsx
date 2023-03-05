@@ -45,27 +45,27 @@ const Languages: FC<LanguagesProps> = ({}) => {
     <LanguagesContainer>
       <div className="icon-container">
         <Typescript />
-        Typescript
+        <p>Typescript</p>
       </div>
       <div className="icon-container">
         <HTML />
-        HTML
+        <p>HTML</p>
       </div>
       <div className="icon-container">
         <Sass />
-        Sass
+        <p>Sass</p>
       </div>
       <div className="icon-container">
         <Pythom />
-        Pythom
+        <p>Python</p>
       </div>
       <div className="icon-container">
         <Php />
-        Php
+        <p>php</p>
       </div>
       <div className="icon-container">
         <NodeJs />
-        NodeJs
+        <p>NodeJs</p>
       </div>
     </LanguagesContainer>
   );

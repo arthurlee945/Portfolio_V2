@@ -9,7 +9,7 @@ import ScrollBoard from "./parts/ScrollBoard";
 import ArrowLink from "components/reusable/ArrowLink";
 interface IntroductionProps {}
 
-const IntroductionContainer = styled.div`
+const IntroductionContainer = styled.section`
   position: relative;
   overflow: hidden;
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
@@ -26,10 +26,10 @@ const IntroductionContainer = styled.div`
       row-gap: 75px;
     }
     @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-      padding: 35px min(9%, 95px);
+      padding: 65px min(9%, 95px);
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
-      padding: 25px min(6%, 60px);
+      padding: 50px min(6%, 60px);
     }
     .info-box {
       width: 40%;
@@ -45,9 +45,13 @@ const IntroductionContainer = styled.div`
       display: flex;
       ${highlightEffect}
       cursor:default;
-      font-weight: 600;
-      font-size: 2.5rem;
+      font-weight: 500;
+      font-size: 2.75rem;
       column-gap: 0.7rem;
+      @media only screen and (max-width: ${medias.phone + "px"}) {
+        font-size: 2rem;
+        column-gap: 0.5rem;
+      }
     }
     .info-description {
       font-size: 1.2rem;

@@ -45,7 +45,7 @@ export const highlightEffect = css`
     flex-direction: row;
     p {
       transition: font-weight 150ms;
-      color: inherit;
+      color: ${colors.white};
       &:has(+ p + ${"p:hover"}) {
         font-weight: 600;
       }
@@ -63,4 +63,7 @@ export const highlightEffect = css`
       }
     }
   }
+`;
+export const boxShadow = css`
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.85);
 `;

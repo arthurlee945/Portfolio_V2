@@ -5,7 +5,7 @@ import { GlobalContext } from "utils/GlobalContext";
 import { throttle } from "../../utils/throttle-functions";
 import { medias, colors } from "../../styles/style-variables";
 import HightlightLink from "../reusable/HighlightLink";
-import SocialLinks from "./headerParts/SocialLinks";
+import HeaderSocialLinks from "./headerParts/HeaderSocialLinks";
 import LightbulbBtn from "./headerParts/LightbulbBtn";
 
 const HeaderComponent = styled.header<{ sticky: boolean }>`
@@ -182,7 +182,7 @@ const Header: FC = () => {
     };
     let prevPosY = 0,
       navVisible = true;
-    const handleNavSticky = throttle(() => {
+    const handleNavSticky = throttle<unknown>(() => {
       // const navHeight = window.innerWidth > 1100 ? 110 : window.innerWidth > 500 ? 100 : 64;
       const posY = window.scrollY;
       if (posY === 0) return;
@@ -235,7 +235,7 @@ const Header: FC = () => {
                 <HightlightLink href="/contact">Contact</HightlightLink>
               </li>
             )}
-            <SocialLinks />
+            <HeaderSocialLinks />
           </ul>
         </DropdownContainer>
       </div>

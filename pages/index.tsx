@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Arthur Lee | Developer"
-        description="Arthur Lee Portfolio Homepage"
+        title="Arthur Lee | Developer Home Page"
+        description="Arthur Lee Portfolio Homepage with description of his experience and samples"
         keywords="developer, chicago, software developer, full-stack, fullstack developer"
       />
       <HomePageHero />

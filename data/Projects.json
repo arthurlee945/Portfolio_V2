@@ -3,26 +3,50 @@
     "work":[{
       "id":"classic-mechanics",
       "name":"Classic Mechanics",
-      "img":"/project-images/classic-mechanics.jpg",
+      "img":"/project-images/classic-mechanics.webp",
       "url":"https://www.classicmechanicsgarage.com/",
       "tools":["Next.js","Headless CMS", "PostgreSQL"],
-      "desc":"Website created for client who deals with antique car restoration."
+      "desc":"Website created with Next.JS as frontend and Strapi and PostgreSQL as backend framework."
     },{
-      "id":"",
-      "name":"",
-      "img":"",
-      "url":"",
-      "tools":[],
-      "desc":""
+      "id":"dot-security",
+      "name":"Dot Security",
+      "img":"/project-images/dot.webp",
+      "url":"https://dotsecurity.com/",
+      "tools":["Next.js", "Headless CMS", "PostgreSQL"],
+      "desc":"Website created with Next.JS as frontend and Strapi and PostgreSQL as backend framework alongside other external apis"
+    },{
+      "id":"zenar-crane",
+      "name":"Zenar Crane",
+      "img":"/project-images/zenar.webp",
+      "url":"https://www.zenarcrane.com/",
+      "tools":["php", "Wordpress CMS"],
+      "desc":"Site created using custom template with Wordpress CMS"
     }],
     "personal":[{
-      "id":"",
-      "name":"",
+      "id":"humandex",
+      "status":"completed",
+      "name":"HumanDex",
       "img":"",
-      "url":"",
-      "repo":"",
-      "tools":[],
-      "desc":""
+      "url":"NONE",
+      "repo":"https://github.com/arthurlee945/HumanDex",
+      "tools":["React Native", "Python", "Open AI", "SQLite"],
+      "desc":"Face-scanning mobile app that provides analyzed data and humorous descriptions."
+    },{
+      "id":"color-pallete-detector",
+      "name":"Color Pallete Detector",
+      "img":"/project-images/color-pallete-detector.webp",
+      "url":"NONE",
+      "repo":"https://github.com/arthurlee945/Color-Pallete-Detector",
+      "tools":["Python", "NumPy"],
+      "desc":"Image analyzer that scans images and generates 5 primary colors."
+    },{
+      "id":"global-joke-aPI",
+      "name":"Global Joke API",
+      "img":"/project-images/global-joke-api.webp",
+      "url":"NONE",
+      "repo":"https://github.com/arthurlee945/joke-api",
+      "tools":["Python", "Flask"],
+      "desc":"REST API that returns jokes from different countries depends on parameters."
     }]
   }
 }

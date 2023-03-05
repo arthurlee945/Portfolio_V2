@@ -1,15 +1,16 @@
 import { FC } from "react";
 import Seo from "../components/components/Seo";
+import PageIntro from "components/components/Projects/PageIntro";
 
 const projects: FC = () => {
   return (
     <>
       <Seo
-        title="Arthur Lee | Developer"
-        description="Arthur Lee Portfolio Homepage"
-        keywords="developer, chicago, software developer, full-stack, fullstack developer"
+        title="Arthur Lee | Projects"
+        description="Arthur Lee Projects page with future and currently completed"
+        keywords="developer, chicago, software developer, full-stack, fullstack developer, sample projects, future projects"
       />
-      <h1 style={{ color: "white" }}>Project</h1>
+      <PageIntro />
     </>
   );
 };

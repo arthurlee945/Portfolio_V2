@@ -10,7 +10,6 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
     margin: 0;
   }
 
-
   html,
   body {
     font-family: "Hubot Sans", sans-serif;
@@ -60,17 +59,17 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
 
   body::-webkit-scrollbar {
     appearance: none;
-    width: 8px;
+    width: 7px;
   }
   body::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: #9c9c9c;
   }
   body::-webkit-scrollbar-thumb {
-    background-color: #888;
+    background-color: #1a1c1f;
     transition: background-color 250ms;
   }
   body::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
+    background-color: #2a2d31;
   }
   a {
     color: inherit;
@@ -84,5 +83,20 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   li,
   ul{
     list-style: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p{
+    &::selection {
+        background-color: #FAF9F6;
+        color: #0b0d10;
+      }
+  }
+  button{
+    -webkit-tap-highlight-color:transparent;
   }
 `;

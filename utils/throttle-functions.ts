@@ -9,9 +9,9 @@ export function debounce(callback: (...args: unknown[]) => void, delay = 500) {
   };
 }
 
-export function throttle(callback: (...args: unknown[]) => void, delay = 500) {
+export function throttle<T>(callback: (...args: T[]) => void, delay = 500) {
   let waiting = false;
-  let waitingArgs: unknown[] | null;
+  let waitingArgs: T[] | null;
 
   const timeoutFunc = () => {
     if (waitingArgs == null) {
@@ -23,7 +23,7 @@ export function throttle(callback: (...args: unknown[]) => void, delay = 500) {
     }
   };
 
-  return (...args: unknown[]) => {
+  return (...args: T[]) => {
     if (waiting) {
       waitingArgs = args;
       return;

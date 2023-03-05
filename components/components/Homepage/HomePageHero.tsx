@@ -1,13 +1,13 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useMemo, useRef } from "react";
 import styled from "styled-components";
-import Image from "next/image";
 import { colors, medias } from "../../../styles/style-variables";
+import { useViewPortTracker } from "utils/custom-hooks";
 import HighlightLink from "../../reusable/HighlightLink";
 import MotionScrollDiv from "../../reusable/MotionScrollDiv";
 import HeroShowcase from "./parts/HeroShowcase";
 interface HeroProps {}
 
-const HeroContainer = styled.div`
+const HeroContainer = styled.section`
   padding: 125px min(5%, 75px);
   border-bottom: 1px solid ${colors.white};
   overflow: hidden;
@@ -47,7 +47,6 @@ const HeroContainer = styled.div`
     .hero-content--left,
     .hero-content--right {
       background-color: ${colors.white};
-
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -111,7 +110,7 @@ const HeroContainer = styled.div`
       font-size: 1.2rem;
       cursor: pointer;
       transition: width 300ms;
-      color: ${colors.richBlack};
+
       flex-wrap: wrap;
       justify-content: flex-start;
       letter-spacing: 0.1rem;
@@ -119,54 +118,45 @@ const HeroContainer = styled.div`
       &:hover {
         letter-spacing: 0.15rem;
       }
+      p {
+        color: ${colors.richBlack};
+      }
+      p::selection {
+        background-color: ${colors.richBlack};
+        color: ${colors.white};
+      }
     }
   }
 `;
 type DirType = { dir: "up" | "down" | "left" | "right" };
+
 const HomePageHero: FC<HeroProps> = ({}) => {
   const heroRef = useRef(null);
-  const [scrollDir, setScrollDir] = useState<{
+  const vpTracker = useViewPortTracker();
+  const scrollDirMemo = useMemo<{
     left: DirType;
     center: DirType;
     right: DirType;
-  }>({
-    left: { dir: "down" },
-    center: { dir: "up" },
-    right: { dir: "down" },
-  });
+  }>(() => {
+    if (vpTracker === "desktop") {
+      return {
+        left: { dir: "down" },
+        center: { dir: "up" },
+        right: { dir: "down" },
+      };
+    } else {
+      return {
+        left: { dir: "left" },
+        center: { dir: "right" },
+        right: { dir: "left" },
+      };
+    }
+  }, [vpTracker]);
 
-  useEffect(() => {
-    let prevWidth: number | undefined = undefined;
-    const handleScrollDir = () => {
-      let currentWidth = window.innerWidth;
-      if (prevWidth && ((currentWidth > 1100 && prevWidth > 1100) || (currentWidth <= 1100 && prevWidth <= 1100))) return;
-      if (currentWidth <= 1100) {
-        setScrollDir((currDir) => ({
-          ...currDir,
-          left: { dir: "left" },
-          center: { dir: "right" },
-          right: { dir: "left" },
-        }));
-      } else {
-        setScrollDir((currDir) => ({
-          ...currDir,
-          left: { dir: "down" },
-          center: { dir: "up" },
-          right: { dir: "down" },
-        }));
-      }
-      prevWidth = currentWidth;
-    };
-    window.addEventListener("resize", handleScrollDir);
-    window.dispatchEvent(new Event("resize"));
-    return () => {
-      window.removeEventListener("resize", handleScrollDir);
-    };
-  }, []);
   return (
     <HeroContainer ref={heroRef}>
       <div className="hero-container">
-        <MotionScrollDiv className="hero-content--left" scrollDir={scrollDir.left.dir}>
+        <MotionScrollDiv className="hero-content--left" scrollDir={scrollDirMemo.left.dir}>
           <h1 className="hero-header">
             Hi, My
             <br />
@@ -176,10 +166,10 @@ const HomePageHero: FC<HeroProps> = ({}) => {
             I am a Developer based in Chicago
           </HighlightLink>
         </MotionScrollDiv>
-        <MotionScrollDiv className="hero-content--center" scrollDir={scrollDir.center.dir}>
+        <MotionScrollDiv className="hero-content--center" scrollDir={scrollDirMemo.center.dir}>
           <HeroShowcase />
         </MotionScrollDiv>
-        <MotionScrollDiv className="hero-content--right" scrollDir={scrollDir.right.dir}>
+        <MotionScrollDiv className="hero-content--right" scrollDir={scrollDirMemo.right.dir}>
           <h2 className="hero-header">Let's work together.</h2>
           <HighlightLink href="/contact" underline={false} className="hero-subHeader">
             You can talk to me by clicking here!
