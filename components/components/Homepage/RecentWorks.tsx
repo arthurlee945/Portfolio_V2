@@ -52,9 +52,10 @@ const RecentWorks: FC<RWTypes> = ({}) => {
     <RecentWorkContainer>
       <HighlightText className="rw-header">Recent Works</HighlightText>
       <div className="rw-contents">
-        {data.work.map((wData, i) => (
-          <FeaturedCard key={wData.name} data={wData} transition={{ delay: vpMemo * i * 0.15 }} viewport={{ amount: 0.5 }} />
-        ))}
+        {data.work.map(
+          (wData, i) =>
+            i <= 2 && <FeaturedCard key={wData.id} data={wData} transition={{ delay: vpMemo * i * 0.15 }} viewport={{ amount: 0.5 }} />
+        )}
       </div>
     </RecentWorkContainer>
   );

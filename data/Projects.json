@@ -21,12 +21,18 @@
       "url":"https://www.zenarcrane.com/",
       "tools":["php", "Wordpress CMS"],
       "desc":"Site created using custom template with Wordpress CMS"
+    },{
+      "id":"inspire-automation",
+      "name":"Inspire Automation",
+      "img":"/project-images/inspire-automation.webp",
+      "url":"https://inspireautomation.com/",
+      "tools":["php", "Wordpress CMS"],
+      "desc":"Site for automation manufacturer created using custom template with Wordpress CMS"
     }],
     "personal":[{
       "id":"humandex",
-      "status":"completed",
       "name":"HumanDex",
-      "img":"",
+      "img":"/project-images/humandex2.webp",
       "url":"NONE",
       "repo":"https://github.com/arthurlee945/HumanDex",
       "tools":["React Native", "Python", "Open AI", "SQLite"],
@@ -37,16 +43,59 @@
       "img":"/project-images/color-pallete-detector.webp",
       "url":"NONE",
       "repo":"https://github.com/arthurlee945/Color-Pallete-Detector",
-      "tools":["Python", "NumPy"],
+      "tools":["Python", "NumPy", "Tkinter"],
       "desc":"Image analyzer that scans images and generates 5 primary colors."
     },{
-      "id":"global-joke-aPI",
+      "id":"global-joke-api",
       "name":"Global Joke API",
       "img":"/project-images/global-joke-api.webp",
       "url":"NONE",
       "repo":"https://github.com/arthurlee945/joke-api",
       "tools":["Python", "Flask"],
       "desc":"REST API that returns jokes from different countries depends on parameters."
-    }]
+    },{
+      "id":"pdf-to-speech-converter",
+      "name":"PDF To Speech Converter",
+      "img":"/project-images/pdf-to-speech.webp",
+      "url":"NONE",
+      "repo":"https://github.com/arthurlee945/PDF_to_Speech_converter",
+      "tools":["Python", "Tkinter"],
+      "desc":"Program that can ready pdf files and convert into audio file."
+    },{
+      "id":"portfolio_v1",
+      "name":"Portfolio V1",
+      "img":"/project-images/portfolio-v1.webp",
+      "url":"https://arthurlee945.github.io/myPortfolio/",
+      "repo":"https://github.com/arthurlee945/PDF_to_Speech_converter",
+      "tools":["React.js", "Sass"],
+      "desc":"first portfolio site created with pure React.js and Sass."
+    },{
+      "id":"elden-ring-weapons",
+      "name":"Elden Ring Weapons",
+      "img":"/project-images/eldenringweapon.webp",
+      "url":"https://eldenringweapons.com/",
+      "repo":"https://github.com/arthurlee945/EldenRingWeapons",
+      "tools":["React", "Sass", "TypeScript", "Three.JS"],
+      "desc":"Simple app displaying 3D models of all the weapons from a hit game, Elden Ring."
+    },{
+      "id":"solar-system-app",
+      "name":"Solar System",
+      "img":"/project-images/solar-system.webp",
+      "url":"https://arthurlee945.github.io/SolarSystemApp/",
+      "repo":"https://github.com/arthurlee945/SolarSystemApp",
+      "tools":["React", "Sass", "JavaScript", "NASA"],
+      "info":"A simple introduction to our solar system created by images and information about each planet."
+    }],
+    "workInProgress":[
+      {
+        "id":"plant-apothecary",
+        "name":"Plant Apothecary",
+        "img":"/project-images/plant-apothecary.webp",
+        "url":"NONE",
+        "repo":"https://github.com/arthurlee945/Plant_Apothecary",
+        "tools":["TurboRepo", "Typescript", "React Native", "Next.js", "TRPC", "Prisma", "PostgreSQL"],
+        "desc":"Monorepo project utilizing React Native for app development and Next.js for web front with Type safe connection and auth capability."
+      }
+    ]
   }
 }
