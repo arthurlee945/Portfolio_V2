@@ -48,7 +48,7 @@ const BulbButton = styled.button`
   }
   &[aria-pressed="true"] {
     > svg {
-      transform: rotate(180deg);
+      transform: rotate(-180deg);
       .bulb-top {
         animation: bulb-click 200ms;
         animation-delay: 300ms;

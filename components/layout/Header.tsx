@@ -180,10 +180,8 @@ const Header: FC = () => {
       }));
       globalCtx.setNavStatus("closed");
     };
-    let prevPosY = 0,
-      navVisible = true;
+    let prevPosY = 0;
     const handleNavSticky = throttle<unknown>(() => {
-      // const navHeight = window.innerWidth > 1100 ? 110 : window.innerWidth > 500 ? 100 : 64;
       const posY = window.scrollY;
       if (posY === 0) return;
       if (posY > prevPosY) {

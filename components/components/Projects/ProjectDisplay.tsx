@@ -19,6 +19,7 @@ const ProjectDisplayContainer = styled.div`
     font-size: 3.35rem;
     font-weight: 500;
     column-gap: 1rem;
+    cursor: default;
     @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
     }
     @media only screen and (max-width: ${medias.phone + "px"}) {
