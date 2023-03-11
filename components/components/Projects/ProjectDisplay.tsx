@@ -1,14 +1,17 @@
 import { colors, medias } from "@/styles/style-variables";
 import HighlightText from "components/reusable/HighlightText";
+import { m } from "framer-motion";
 import { FC } from "react";
 import styled from "styled-components";
-const ProjectDisplayContainer = styled.div`
+import ProjectsSections from "./parts/ProjectsSections";
+const ProjectDisplayContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 125px min(5%, 75px);
   border-bottom: 1px solid ${colors.white};
   overflow: hidden;
+  row-gap: 75px;
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
     padding: 35px min(9%, 95px);
   }
@@ -16,7 +19,7 @@ const ProjectDisplayContainer = styled.div`
     padding: 25px min(6%, 60px);
   }
   .pi-header {
-    font-size: 3.35rem;
+    font-size: 3.5rem;
     font-weight: 500;
     column-gap: 1rem;
     cursor: default;
@@ -35,9 +38,10 @@ interface ProjectDisplayProps {}
 const ProjectDisplay: FC<ProjectDisplayProps> = ({}) => {
   return (
     <ProjectDisplayContainer>
-      <h1 className="pi-header">
+      <m.h1 style={{ y: -50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} className="pi-header">
         <HighlightText>_PROJECTS</HighlightText>
-      </h1>
+      </m.h1>
+      <ProjectsSections />
     </ProjectDisplayContainer>
   );
 };

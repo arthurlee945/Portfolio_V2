@@ -5,7 +5,7 @@ import { colors, medias, highlightEffect } from "../../../styles/style-variables
 import AosElement from "../../reusable/AosElement";
 import Languages from "./parts/Languages";
 import ShapeZoom from "./parts/ShapeZoom";
-import ScrollBoard from "./parts/ScrollBoard";
+import ScrollBoard from "../../reusable/ScrollBoard";
 import ArrowLink from "components/reusable/ArrowLink";
 interface IntroductionProps {}
 

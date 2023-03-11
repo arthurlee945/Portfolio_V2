@@ -2,10 +2,12 @@ import { FC, useRef } from "react";
 import { m, useScroll, useSpring, useTransform } from "framer-motion";
 import styled from "styled-components";
 import { medias } from "@/styles/style-variables";
-import HighlightText from "components/reusable/HighlightText";
+import HighlightText from "./HighlightText";
 
 interface SBProps {
   children: string;
+  className?: string;
+  offset?: number[];
 }
 const ScrollBoardContainer = styled(m.div)`
   padding: 20px 15px;
@@ -32,16 +34,16 @@ const ScrollBoardContainer = styled(m.div)`
     }
   }
 `;
-const ScrollBoard: FC<SBProps> = ({ children }) => {
+const ScrollBoard: FC<SBProps> = ({ children, className }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["0 0.5", "0 0"],
+    offset: ["0 0.5", "0 -0.5"],
   });
-  const springScroll = useSpring(scrollYProgress, { stiffness: 8, damping: 4 });
+  const springScroll = useSpring(scrollYProgress, { stiffness: 5, damping: 3 });
   const scrollProgress = useTransform(springScroll, [0, 1], ["0%", "-50%"]);
   return (
-    <ScrollBoardContainer ref={ref} style={{ x: scrollProgress, y: 0 }}>
+    <ScrollBoardContainer className={className} ref={ref} style={{ x: scrollProgress, y: 0 }}>
       <HighlightText className="repeating-text">{children + " " + children}</HighlightText>
     </ScrollBoardContainer>
   );
