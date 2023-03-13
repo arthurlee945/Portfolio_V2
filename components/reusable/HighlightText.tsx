@@ -5,17 +5,18 @@ interface HLProps {
   children: string;
   className?: string;
   fragment?: boolean;
+  [rest: string]: any;
 }
 const HighLightTextContainer = styled.div`
   display: flex;
   align-items: center;
   ${highlightEffect}
 `;
-const HighlightText: FC<HLProps> = ({ children, className, fragment = false }) => {
+const HighlightText: FC<HLProps> = ({ children, className, fragment = false, ...rest }) => {
   return (
     <>
       {!fragment ? (
-        <HighLightTextContainer id="highlight-text" className={className} aria-label={children}>
+        <HighLightTextContainer id="highlight-text" className={className} aria-label={children} {...rest}>
           {children.split(" ").map((letter, i) => {
             return (
               <span key={`${letter}-${i}`}>

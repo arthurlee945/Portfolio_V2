@@ -1,4 +1,4 @@
-import { colors, medias } from "@/styles/style-variables";
+import { colors, medias, underline } from "@/styles/style-variables";
 import AosElement from "components/reusable/AosElement";
 import HighlightLink from "components/reusable/HighlightLink";
 import { FC, useRef, useState } from "react";
@@ -6,6 +6,8 @@ import styled, { css } from "styled-components";
 import { HTMLMotionProps } from "framer-motion";
 import { useViewPortTracker } from "utils/custom-hooks";
 import { throttle } from "utils/throttle-functions";
+import Link from "next/link";
+import HighlightText from "./HighlightText";
 
 type SCProps = { $cardImage: string; $bgPos: { x: string; y: string }; $viewStarted: boolean; $viewport: string };
 const FeaturedCardContainer = styled(AosElement)<SCProps>`
@@ -39,7 +41,6 @@ const FeaturedCardContainer = styled(AosElement)<SCProps>`
       background-image: url(${({ $cardImage }) => $cardImage});
       background-size: cover;
       background-position: inherit;
-      transition: background-position 50ms;
     }
 
     .card-controls > button,
@@ -73,11 +74,34 @@ const FeaturedCardContainer = styled(AosElement)<SCProps>`
     .card-header {
       font-size: 1.8rem;
       flex-wrap: wrap;
+      column-gap: 0.5rem;
+      justify-content: center;
       &:after {
         left: unset;
       }
     }
     .card-description {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 20px;
+      @media only screen and (max-width: ${medias.phone + "px"}) {
+        row-gap: 15px;
+      }
+      .card-repo {
+        position: relative;
+        width: fit-content;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        letter-spacing: 0.2rem;
+        justify-content: center;
+        ${underline};
+        &:after {
+          left: unset;
+        }
+      }
     }
     .card-tags {
       display: flex;
@@ -85,6 +109,7 @@ const FeaturedCardContainer = styled(AosElement)<SCProps>`
       gap: 10px;
       margin-top: 10px;
     }
+
     ${({ $viewStarted, $viewport }) => {
       if ($viewStarted) {
         return css`
@@ -157,7 +182,12 @@ const ControlButtonCont = styled.button`
 
 const ControlButton: FC<{ [fc: string]: () => void }> = ({ onPressStart }) => {
   return (
-    <ControlButtonCont onMouseDown={onPressStart} onTouchStart={onPressStart}>
+    <ControlButtonCont
+      onMouseDown={onPressStart}
+      onTouchStart={onPressStart}
+      role="button"
+      aria-label="project card sample image view button"
+    >
       <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
         <path d="M8 5.5A2.59 2.59 0 0 0 5.33 8 2.59 2.59 0 0 0 8 10.5 2.59 2.59 0 0 0 10.67 8 2.59 2.59 0 0 0 8 5.5zm0 3.75A1.35 1.35 0 0 1 6.58 8 1.35 1.35 0 0 1 8 6.75 1.35 1.35 0 0 1 9.42 8 1.35 1.35 0 0 1 8 9.25z" />
         <path d="M8 2.5A8.11 8.11 0 0 0 0 8a8.11 8.11 0 0 0 8 5.5A8.11 8.11 0 0 0 16 8a8.11 8.11 0 0 0-8-5.5zm5.4 7.5A6.91 6.91 0 0 1 8 12.25 6.91 6.91 0 0 1 2.6 10a7.2 7.2 0 0 1-1.27-2A7.2 7.2 0 0 1 2.6 6 6.91 6.91 0 0 1 8 3.75 6.91 6.91 0 0 1 13.4 6a7.2 7.2 0 0 1 1.27 2 7.2 7.2 0 0 1-1.27 2z" />
@@ -248,13 +278,27 @@ const FeaturedCard: FC<CardType> = ({ data, delay = 0, className, ...rest }) => 
         <div className="card-info">
           <div className="card-controls">
             <ControlButton onPressStart={onPressStart} />
+
             <h3>
-              <HighlightLink href={data.url} target="_blank" className="card-header">
-                {data.name}
-              </HighlightLink>
+              {data.url !== "NONE" ? (
+                <HighlightLink href={data.url} target="_blank" className="card-header">
+                  {data.name}
+                </HighlightLink>
+              ) : (
+                <HighlightText className="card-header" style={{ cursor: "default" }}>
+                  {data.name}
+                </HighlightText>
+              )}
             </h3>
           </div>
-          <p className="card-description">{data.desc}</p>
+          <p className="card-description">
+            {data.desc}
+            {data.repo && (
+              <Link className="card-repo" href={data.repo} target="_blank">
+                Visit Repo
+              </Link>
+            )}
+          </p>
           <div className="card-tags">
             {data.tools.map((tool) => (
               <Tag key={`${data.name}-${tool}`} name={tool} />

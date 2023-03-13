@@ -30,14 +30,6 @@
       "desc":"Site for automation manufacturer created using custom template with Wordpress CMS"
     }],
     "personal":[{
-      "id":"humandex",
-      "name":"HumanDex",
-      "img":"/project-images/humandex2.webp",
-      "url":"NONE",
-      "repo":"https://github.com/arthurlee945/HumanDex",
-      "tools":["React Native", "Python", "Open AI", "SQLite"],
-      "desc":"Face-scanning mobile app that provides analyzed data and humorous descriptions."
-    },{
       "id":"color-pallete-detector",
       "name":"Color Pallete Detector",
       "img":"/project-images/color-pallete-detector.webp",
@@ -45,6 +37,14 @@
       "repo":"https://github.com/arthurlee945/Color-Pallete-Detector",
       "tools":["Python", "NumPy", "Tkinter"],
       "desc":"Image analyzer that scans images and generates 5 primary colors."
+    },{
+      "id":"humandex",
+      "name":"HumanDex",
+      "img":"/project-images/humandex2.webp",
+      "url":"NONE",
+      "repo":"https://github.com/arthurlee945/HumanDex",
+      "tools":["React Native", "Python", "Open AI", "SQLite"],
+      "desc":"Face-scanning mobile app that provides analyzed data and humorous descriptions."
     },{
       "id":"global-joke-api",
       "name":"Global Joke API",
@@ -76,7 +76,7 @@
       "url":"https://eldenringweapons.com/",
       "repo":"https://github.com/arthurlee945/EldenRingWeapons",
       "tools":["React", "Sass", "TypeScript", "Three.JS"],
-      "desc":"Simple app displaying 3D models of all the weapons from a hit game, Elden Ring."
+      "desc":"App displaying 3D models of all the weapons from a hit game, Elden Ring."
     },{
       "id":"solar-system-app",
       "name":"Solar System",
@@ -84,7 +84,15 @@
       "url":"https://arthurlee945.github.io/SolarSystemApp/",
       "repo":"https://github.com/arthurlee945/SolarSystemApp",
       "tools":["React", "Sass", "JavaScript", "NASA"],
-      "info":"A simple introduction to our solar system created by images and information about each planet."
+      "desc":"An introduction to our solar system created by images and information about each planet."
+    },{
+      "id":"floppy",
+      "name":"Floppy",
+      "img":"/project-images/floppy.webp",
+      "url":"https://arthurlee945.github.io/floppy/",
+      "repo":"https://github.com/arthurlee945/floppy",
+      "tools":["TypeScript", "Sass", "React"],
+      "desc":"Clone of Flappy Bird using Typescript and React."
     }],
     "workInProgress":[
       {

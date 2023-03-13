@@ -28,7 +28,7 @@ const MotionScrollDiv: FC<MSDProps> = ({ children, scrollDir = "down", className
     }
   }, [scrollDir]);
   return (
-    <m.div ref={ref} className={className} style={{ ...directionMemo, transform: "translateY(0)" }}>
+    <m.div ref={ref} className={className} style={{ transform: "translateY(0)", ...directionMemo }}>
       {children}
     </m.div>
   );

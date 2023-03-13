@@ -62,10 +62,7 @@ const HeroContainer = styled.section`
       }
     }
     .hero-content--center {
-      --init-pos: translateY(-100%);
       border: 1px solid ${colors.white};
-      /* padding: 25px; */
-      animation: content-intro 500ms;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
         --init-pos: translateX(100%);
       }
@@ -74,20 +71,7 @@ const HeroContainer = styled.section`
       @media only screen and (max-width: ${medias.phone + "px"}) {
       }
     }
-    .hero-content--left {
-      --init-pos: translateX(-100%);
-    }
-    .hero-content--right {
-      --init-pos: translateX(100%);
-      @media only screen and (max-width: ${medias.tablet + "px"}) {
-        --init-pos: translateX(-100%);
-      }
-    }
-    @keyframes content-intro {
-      from {
-        transform: var(--init-pos);
-      }
-    }
+
     .hero-image {
       position: relative;
       width: 100%;
