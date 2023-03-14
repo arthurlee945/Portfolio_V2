@@ -43,7 +43,7 @@ const ProjectDisplay: FC<ProjectDisplayProps> = ({}) => {
   const vpTracker = useViewPortTracker();
   return (
     <ProjectDisplayContainer>
-      <m.h1 style={{ y: -50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} className="pi-header">
+      <m.h1 style={{ y: -50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} className="pi-header">
         <HighlightText>_PROJECTS</HighlightText>
       </m.h1>
       <ProjectsSections sectionTitle="Recent Works" data={projects.data.work} viewport={vpTracker} />

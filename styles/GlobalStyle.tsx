@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
-
+import { colors } from "./style-variables";
 interface GSTypes {
   navState?: boolean;
 }
@@ -13,8 +13,8 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   html,
   body {
     font-family: "Hubot Sans", sans-serif;
-    background-color: #0b0d10;
-    color: #FAF9F6;
+    background-color: ${colors.richBlack};
+    color: ${colors.white};
     scroll-behavior: smooth;
     scrollbar-width: thin;
   }
@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
     scroll-behavior: smooth;
   }
   #__next{
-    border:1px solid #FAF9F6;
+    border:1px solid ${colors.white};
     position: relative;
     min-height: calc(100vh - 50px);
   }
@@ -92,7 +92,7 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   h6,
   p{
     &::selection {
-        background-color: #FAF9F6;
+        background-color: ${colors.white};
         color: #0b0d10;
       }
   }

@@ -13,10 +13,10 @@ const ProjectsSectionContainer = styled.section`
   .ps-titles {
     padding: 15px;
     .repeating-text {
-      font-size: 3rem;
-      column-gap: 1.5rem;
+      font-size: 2.5rem;
+      column-gap: 1.25rem;
       @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-        font-size: 2.5rem;
+        font-size: 2rem;
         column-gap: 1rem;
       }
       @media only screen and (max-width: ${medias.phone + "px"}) {
@@ -67,7 +67,7 @@ const ProjectsSections: FC<PSInterface> = ({ sectionTitle = "Sample Title", word
             className="project-card"
             key={prj.id}
             data={prj}
-            transition={{ delay: vpMemo * i * 0.1 }}
+            transition={{ delay: vpMemo * i * 0.075 }}
             viewport={{ amount: 0.5 }}
           />
         ))}

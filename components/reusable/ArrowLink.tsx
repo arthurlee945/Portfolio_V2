@@ -66,7 +66,7 @@ const LinkArrowContainer = styled(Link)`
     }
   }
 `;
-const LinkArrow: FC<LAProps> = ({ children, className, href, target = "_self" }) => {
+const ArrowLink: FC<LAProps> = ({ children, className, href, target = "_self" }) => {
   return (
     <LinkArrowContainer className={className} href={href} target={target}>
       {children}
@@ -74,4 +74,4 @@ const LinkArrow: FC<LAProps> = ({ children, className, href, target = "_self" })
   );
 };
 
-export default LinkArrow;
+export default ArrowLink;

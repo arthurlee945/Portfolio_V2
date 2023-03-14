@@ -21,6 +21,7 @@ const HeaderComponent = styled.header<{ sticky: boolean }>`
       `;
     } else {
       return css`
+        pointer-events: none;
         .navigation {
           transform: translateY(-100%);
         }
