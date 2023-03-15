@@ -83,6 +83,10 @@ const HeroContainer = styled.section`
     }
     .hero-header {
       font-size: 3.35rem;
+      &::selection {
+        background-color: ${colors.richBlack};
+        color: ${colors.white};
+      }
       @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
       }
       @media only screen and (max-width: ${medias.phone + "px"}) {

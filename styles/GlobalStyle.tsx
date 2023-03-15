@@ -84,18 +84,10 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   ul{
     list-style: none;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p{
-    &::selection {
+  *::selection {
         background-color: ${colors.white};
         color: #0b0d10;
       }
-  }
   button{
     -webkit-tap-highlight-color:transparent;
   }
