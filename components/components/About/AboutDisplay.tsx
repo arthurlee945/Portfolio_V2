@@ -1,11 +1,12 @@
-import { FC, useState } from "react";
-import styled from "styled-components";
+import { FC, SyntheticEvent, useState } from "react";
+import styled, { css } from "styled-components";
 import { m } from "framer-motion";
 import HighlightText from "components/reusable/HighlightText";
 import { colors, highlightEffect, medias } from "@/styles/style-variables";
 import ArrowLink from "components/reusable/ArrowLink";
 import Image from "next/image";
-const AboutDisplayContainer = styled.section`
+import SpoonZoom from "./parts/SpoonZoom";
+const AboutDisplayContainer = styled.section<{ $profileClicked: boolean }>`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -39,26 +40,40 @@ const AboutDisplayContainer = styled.section`
     aspect-ratio: 1000/650;
     border: 1px solid ${colors.white};
     overflow: hidden;
-    &:hover {
-      &:after {
-        position: absolute;
-        content: "<--- My Spoon";
-        top: 38%;
-        left: 20%;
-        font-size: 1.1rem;
-        @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-          font-size: 1rem;
-        }
-        @media only screen and (max-width: ${medias.phone + "px"}) {
-          font-size: 0.9rem;
-        }
-        animation: spoon-ani 650ms infinite;
-        @keyframes spoon-ani {
-          50% {
-            transform: translateX(10px);
+    cursor: pointer;
+    ${({ $profileClicked }) => {
+      if ($profileClicked) {
+        return css`
+          pointer-events: none;
+        `;
+      } else {
+        return css`
+          &:hover {
+            &:after {
+              position: absolute;
+              content: "<--- My Spoon";
+              top: 38%;
+              left: 20%;
+              font-size: 1.1rem;
+              @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
+                font-size: 1rem;
+              }
+              @media only screen and (max-width: ${medias.phone + "px"}) {
+                font-size: 0.9rem;
+              }
+              animation: spoon-ani 650ms infinite;
+              @keyframes spoon-ani {
+                50% {
+                  transform: translateX(10px);
+                }
+              }
+            }
           }
-        }
+        `;
       }
+    }}
+    &:focus {
+      outline: 2px solid ${colors.white};
     }
 
     @media only screen and (min-width: ${medias.tablet + 1 + "px"}) {
@@ -72,6 +87,7 @@ const AboutDisplayContainer = styled.section`
     > img {
       object-fit: contain;
       object-position: bottom;
+      user-select: none;
     }
   }
   .about-header {
@@ -106,15 +122,31 @@ const AboutDisplayContainer = styled.section`
 interface ADProps {}
 
 const AboutDisplay: FC<ADProps> = ({}) => {
-  const [profileImage, setProfileImage] = useState("/assets/AboutFirst.png");
+  const [profile, setProfile] = useState({ image: "/assets/AboutFirst.png", clicked: false });
+
   const handleHoverStart = (e: MouseEvent) => {
-    setProfileImage("/assets/AboutSecond.png");
+    if (profile.clicked) return;
+    setProfile((curr) => ({
+      ...curr,
+      image: "/assets/AboutSecond.png",
+    }));
   };
   const handleHoverEnd = (e: MouseEvent) => {
-    setProfileImage("/assets/AboutFirst.png");
+    if (profile.clicked) return;
+    setProfile((curr) => ({
+      ...curr,
+      image: "/assets/AboutFirst.png",
+    }));
+  };
+  const handleImageClick = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    setProfile((curr) => ({
+      ...curr,
+      clicked: !curr.clicked,
+    }));
   };
   return (
-    <AboutDisplayContainer>
+    <AboutDisplayContainer $profileClicked={profile.clicked}>
       <div className="about-infos">
         <h1 className="about-header">
           <HighlightText fragment={true}>About Me</HighlightText>
@@ -152,8 +184,12 @@ const AboutDisplay: FC<ADProps> = ({}) => {
         viewport={{ once: true }}
         onHoverStart={handleHoverStart}
         onHoverEnd={handleHoverEnd}
+        onClick={handleImageClick}
+        role="button"
+        tabIndex={profile.clicked ? -1 : 0}
       >
-        <Image src={profileImage} alt="Arthur Lee Profile Image" fill sizes={"100%"} />
+        <Image src={profile.image} alt="Arthur Lee Profile Image" fill sizes={"100%"} />
+        {profile.clicked && <SpoonZoom onClick={handleImageClick} />}
       </m.div>
     </AboutDisplayContainer>
   );
