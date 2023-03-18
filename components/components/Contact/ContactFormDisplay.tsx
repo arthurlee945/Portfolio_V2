@@ -16,11 +16,11 @@ const ContactFormContainer = styled.div<{ $submitting: boolean }>`
   padding: 125px min(5%, 75px);
   row-gap: 50px;
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
-    padding: 75px min(4%, 50px);
+    padding: 100px min(4%, 50px);
   }
   @media only screen and (max-width: ${medias.phone + "px"}) {
     row-gap: 35px;
-    padding: 50px min(7%, 25px);
+    padding: 75px min(5%, 20px);
   }
   .contact-header {
     ${highlightEffect};
@@ -35,8 +35,9 @@ const ContactFormContainer = styled.div<{ $submitting: boolean }>`
     }
   }
   .contact-form-container {
+    position: relative;
     width: 50%;
-    min-width: 675px;
+    min-width: 650px;
     @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
       width: 85%;
       min-width: 400px;
@@ -51,46 +52,14 @@ const ContactFormContainer = styled.div<{ $submitting: boolean }>`
     display: flex;
     flex-direction: column;
     row-gap: 30px;
-    transition: transform 250ms, background-color 250ms;
+    transition: opacity 250ms, transform 250ms;
     ${({ $submitting }) =>
       $submitting &&
       css`
-        > * {
-          opacity: 0;
-        }
-        position: relative;
-        background-color: ${colors.white};
-        transform: scale(0.25);
-        animation: be-loading 5000ms linear infinite;
-        animation-delay: 250ms;
-        &:after {
-          --thickness: 50px;
-          position: absolute;
-          content: "";
-          width: calc(100% + 20px);
-          height: calc(100% + 20px);
-          top: -10px;
-          left: -10px;
-          background-color: ${colors.richBlack};
-          clip-path: polygon(
-            25% 0%,
-            25% var(--thickness),
-            calc(0% + var(--thickness)) var(--thickness),
-            calc(0% + var(--thickness)) calc(100% - var(--thickness)),
-            calc(100% - var(--thickness)) calc(100% - var(--thickness)),
-            calc(100% - var(--thickness)) calc(0% + var(--thickness)),
-            75% var(--thickness),
-            75% 0%
-          );
-        }
-        @keyframes be-loading {
-          from {
-            transform: scale(0.25) rotate(0deg);
-          }
-          to {
-            transform: scale(0.25) rotate(360deg);
-          }
-        }
+        opacity: 0;
+        transform: translateY(50px);
+        pointer-events: 0;
+        user-select: 0;
       `}
   }
   .input-container {
@@ -184,10 +153,13 @@ const ContactFormContainer = styled.div<{ $submitting: boolean }>`
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 15px;
     transition: opacity 150ms;
+    column-gap: 10px;
     @media only screen and (max-width: ${medias.phone + "px"}) {
       flex-direction: column;
-      row-gap: 10px;
+      margin-top: 10px;
     }
     .form-submitBtn {
       width: fit-content;
@@ -252,6 +224,107 @@ const ContactFormContainer = styled.div<{ $submitting: boolean }>`
       }
     }
   }
+  .loading-msg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+    .loading-icon {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      > div {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: ${colors.white};
+        animation: loading-icon-ani 1.2s linear infinite;
+        &:nth-child(1) {
+          top: 8px;
+          left: 8px;
+          animation-delay: 0s;
+        }
+        &:nth-child(2) {
+          top: 8px;
+          left: 32px;
+          animation-delay: -0.4s;
+        }
+        &:nth-child(3) {
+          top: 8px;
+          left: 56px;
+          animation-delay: -0.8s;
+        }
+        &:nth-child(4) {
+          top: 32px;
+          left: 8px;
+          animation-delay: -0.4s;
+        }
+        &:nth-child(5) {
+          top: 32px;
+          left: 32px;
+          animation-delay: -0.8s;
+        }
+        &:nth-child(6) {
+          top: 32px;
+          left: 56px;
+          animation-delay: -1.2s;
+        }
+        &:nth-child(7) {
+          top: 56px;
+          left: 8px;
+          animation-delay: -0.8s;
+        }
+        &:nth-child(8) {
+          top: 56px;
+          left: 32px;
+          animation-delay: -1.2s;
+        }
+        &:nth-child(9) {
+          top: 56px;
+          left: 56px;
+          animation-delay: -1.6s;
+        }
+      }
+      @keyframes loading-icon-ani {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+    }
+    .loading-text {
+      display: flex;
+      column-gap: 0.25rem;
+      > p {
+        font-size: 2rem;
+        font-weight: 500;
+        @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
+          font-size: 1.6rem;
+        }
+        @media only screen and (max-width: ${medias.phone + "px"}) {
+          font-size: 1.4rem;
+        }
+        animation: loading-text-bounce 500ms infinite;
+        @keyframes loading-text-bounce {
+          50% {
+            transform: translateY(10px);
+          }
+        }
+      }
+    }
+  }
 `;
 interface CFDProps {}
 interface ErrorMsgProps {
@@ -259,6 +332,28 @@ interface ErrorMsgProps {
   className: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined;
 }
+const LoadingMsg: FC<{}> = () => {
+  return (
+    <m.div className="loading-msg" initial={{ top: -50, opacity: 0 }} animate={{ top: 0, opacity: 1 }} transition={{ duration: 0.25 }}>
+      <div className="loading-icon">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div className="loading-text">
+        {"Sending...".split("").map((letter, i) => {
+          return <p style={{ animationDelay: `${i * 50}ms` }}>{letter}</p>;
+        })}
+      </div>
+    </m.div>
+  );
+};
 const ErrorMsg: FC<ErrorMsgProps> = ({ error, className }) => {
   return (
     <AnimatePresence mode="wait">
@@ -282,7 +377,7 @@ const ContactFormDisplay: FC<CFDProps> = ({}) => {
     handleSubmit,
     setError,
     resetField,
-    formState: { errors, isSubmitSuccessful, dirtyFields },
+    formState: { errors, isSubmitting, isSubmitSuccessful, dirtyFields },
   } = useForm();
   const [submitState, setSubmitState] = useState<{ loading: boolean; submitted: boolean }>({
     loading: false,
@@ -290,6 +385,7 @@ const ContactFormDisplay: FC<CFDProps> = ({}) => {
   });
 
   const handleFormSubmit = async (data: FieldValues) => {
+    if (isSubmitting) return;
     setSubmitState((currState) => ({
       ...currState,
       loading: true,
@@ -317,8 +413,10 @@ const ContactFormDisplay: FC<CFDProps> = ({}) => {
         <HighlightText fragment={true}>Contact Me!</HighlightText>
       </h1>
       <AnimatePresence mode="wait">
-        {!submitState.submitted ? (
-          <m.div className="contact-form-container" key="contact-form" exit={{ y: 100, opacity: 0 }} transition={{ duration: 0.2 }}>
+        {submitState.submitted ? (
+          <ContactFormConfirmation successful={isSubmitSuccessful} />
+        ) : (
+          <m.div className="contact-form-container" key="contact-form" exit={{ y: 50, opacity: 0 }} transition={{ duration: 0.25 }}>
             <form className="contact-form" onSubmit={handleSubmit(handleFormSubmit)}>
               <div className="input-container">
                 <input
@@ -365,9 +463,8 @@ const ContactFormDisplay: FC<CFDProps> = ({}) => {
                 </ArrowLink>
               </div>
             </form>
+            {submitState.loading && <LoadingMsg />}
           </m.div>
-        ) : (
-          <ContactFormConfirmation successful={isSubmitSuccessful} />
         )}
       </AnimatePresence>
     </ContactFormContainer>

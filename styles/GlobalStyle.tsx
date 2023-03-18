@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    -webkit-tap-highlight-color:transparent;
   }
 
   html,
@@ -88,7 +89,4 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
         background-color: ${colors.white};
         color: #0b0d10;
       }
-  button{
-    -webkit-tap-highlight-color:transparent;
-  }
 `;
