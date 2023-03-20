@@ -1,7 +1,7 @@
 import { AnimatePresence, m } from "framer-motion";
-import { FC, SyntheticEvent, useEffect, MouseEvent, TouchEvent, useState, Suspense, useRef } from "react";
+import { FC, SyntheticEvent, useEffect, MouseEvent, TouchEvent, useState, Suspense, useRef, useCallback } from "react";
 import styled, { css } from "styled-components";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, ThreeElements } from "@react-three/fiber";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { colors, medias } from "@/styles/style-variables";
 
@@ -141,10 +141,11 @@ const RunnerModel: FC<{ playing?: boolean }> = ({ playing }) => {
 };
 
 const ShapeZoom: FC<SZProps> = ({}) => {
-  const szRef = useRef(null);
+  const szRef = useRef<HTMLDivElement>(null);
   const [sceneStarted, setSceneStarted] = useState({
     started: false,
     playing: true,
+    clicked: false,
   });
   const handleSceneStart = (e: SyntheticEvent) => {
     e.stopPropagation();
@@ -163,7 +164,14 @@ const ShapeZoom: FC<SZProps> = ({}) => {
   const handleCanvasPress = (eve: MouseEvent | TouchEvent) => {
     eve.stopPropagation();
     if (!sceneStarted.started || !sceneStarted.playing) return;
+    let { left, right } = (szRef.current as HTMLDivElement).getBoundingClientRect();
+    let middlePoint = (left + right) / 2;
     let relativeX = eve.type === "mousedown" ? (eve as MouseEvent).clientX : (eve as TouchEvent).touches[0].clientX;
+    if (relativeX >= middlePoint) {
+      console.log("right");
+    } else {
+      console.log("left");
+    }
   };
   return (
     <ShapeZoomContainer
