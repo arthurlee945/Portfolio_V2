@@ -35,6 +35,7 @@ const IntroductionContainer = styled.section`
       width: 40%;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       row-gap: 30px;
       @media only screen and (max-width: ${medias.tablet + "px"}) {
         width: 100%;

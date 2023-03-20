@@ -1,13 +1,9 @@
 import { m } from "framer-motion";
 import { FC, useRef } from "react";
 import styled from "styled-components";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Canvas, useLoader, useFrame, ThreeElements } from "@react-three/fiber";
+import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import { medias, colors } from "@/styles/style-variables";
-import HighlightText from "components/reusable/HighlightText";
-
-useLoader.preload(GLTFLoader, "/assets/mail-blue.glb");
-useLoader.preload(GLTFLoader, "/assets/mail-red.glb");
 
 const ConfirmationContainer = styled(m.div)`
   display: flex;
@@ -54,7 +50,8 @@ const MailModel: FC<{ successful: boolean }> = ({ successful }) => {
   useFrame((state, delta) => {
     (iconRef.current as ThreeElements["primitive"]).rotation.y += delta;
   });
-  const IconModel = useLoader(GLTFLoader, `/assets/mail-${successful ? "blue" : "red"}.glb`);
+
+  const IconModel = useGLTF(`/assets/mail-${successful ? "blue" : "red"}.glb`);
   return <primitive ref={iconRef} position={[0, 0.35, -0.5]} object={IconModel.scene} />;
 };
 const ContactFormConfirmation: FC<CFCProps> = ({ successful }) => {

@@ -1,10 +1,8 @@
 import { m } from "framer-motion";
 import { FC, SyntheticEvent, useRef } from "react";
 import styled from "styled-components";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Canvas, useLoader, useFrame, ThreeElements } from "@react-three/fiber";
-
-useLoader.preload(GLTFLoader, "/assets/spoon.glb");
+import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 
 const SpoonZoomContainer = styled(m.div)`
   z-index: 5;
@@ -17,7 +15,6 @@ const SpoonZoomContainer = styled(m.div)`
   width: 100%;
   height: 100%;
   pointer-events: all;
-  /* backdrop-filter: blur(10px) brightness(0.7) grayscale(0.5); */
 `;
 
 interface SZProps {
@@ -28,7 +25,7 @@ const Spoon = () => {
   useFrame((state, delta) => {
     (spoonRef.current as ThreeElements["primitive"]).rotation.z += delta;
   });
-  const spoon = useLoader(GLTFLoader, "/assets/spoon.glb");
+  const spoon = useGLTF("/assets/spoon.glb");
 
   return <primitive ref={spoonRef} position={[0, -0.5, 1.5]} rotation={[Math.PI / 2, 0, 0]} object={spoon.scene} />;
 };
