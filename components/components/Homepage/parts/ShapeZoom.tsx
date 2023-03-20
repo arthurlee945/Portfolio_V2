@@ -124,10 +124,9 @@ const ShapeZoomContainer = styled.div<{ $sceneStarted: boolean; $playing: boolea
 `;
 
 const RunnerModel: FC<{ playing?: boolean }> = ({ playing }) => {
-  const carModel = useGLTF("/assets/cat.glb");
-
-  const { ref, actions, names } = useAnimations(carModel.animations);
-
+  // const catRef = useRef<ThreeElements["primitive"]>(null);
+  const catModel = useGLTF("/assets/cat.glb");
+  const { ref, actions, names } = useAnimations(catModel.animations);
   useEffect(() => {
     if (playing) {
       actions[names[0]]?.setEffectiveTimeScale(2.5);
@@ -137,7 +136,7 @@ const RunnerModel: FC<{ playing?: boolean }> = ({ playing }) => {
     }
   }, [playing]);
 
-  return <primitive ref={ref} object={carModel.scene} position={[0, -2.7, 0]} />;
+  return <primitive ref={ref} object={catModel.scene} position={[0, -2.7, 0]} />;
 };
 
 const ShapeZoom: FC<SZProps> = ({}) => {
