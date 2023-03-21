@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 import HTML from "@/styles/icons/html-5.svg";
+import React from "@/styles/icons/react.svg";
 import Typescript from "@/styles/icons/typescript.svg";
 import Pythom from "@/styles/icons/python.svg";
 import Php from "@/styles/icons/php.svg";
@@ -48,8 +49,8 @@ const Languages: FC<LanguagesProps> = ({}) => {
         <p>Typescript</p>
       </div>
       <div className="icon-container">
-        <HTML />
-        <p>HTML</p>
+        <React />
+        <p>React</p>
       </div>
       <div className="icon-container">
         <Sass />
