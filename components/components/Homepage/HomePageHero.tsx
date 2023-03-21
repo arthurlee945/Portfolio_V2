@@ -83,7 +83,8 @@ const HeroContainer = styled.section`
     }
     .hero-header {
       font-size: 3.35rem;
-      &::selection {
+      &::selection,
+      b::selection {
         background-color: ${colors.richBlack};
         color: ${colors.white};
       }
@@ -98,7 +99,6 @@ const HeroContainer = styled.section`
       font-size: 1.2rem;
       cursor: pointer;
       transition: width 300ms;
-
       flex-wrap: wrap;
       justify-content: flex-start;
       letter-spacing: 0.1rem;
