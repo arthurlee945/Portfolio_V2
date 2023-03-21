@@ -114,7 +114,7 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
       animate={{ opacity: progress === 100 ? 1 : 0 }}
       onMouseDown={onPressStart}
       onTouchStart={onPressStart}
-      transition= {{duration:0.5}}
+      transition= {{duration:0.4}}
     >
       <Canvas gl={{ alpha: true }}>
         <ambientLight intensity={0.15} />
