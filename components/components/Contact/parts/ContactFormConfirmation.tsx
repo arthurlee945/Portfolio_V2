@@ -2,7 +2,7 @@ import { m } from "framer-motion";
 import { FC, useRef } from "react";
 import styled from "styled-components";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useProgress } from "@react-three/drei";
 import { medias, colors } from "@/styles/style-variables";
 
 const ConfirmationContainer = styled(m.div)`
@@ -55,6 +55,7 @@ const MailModel: FC<{ successful: boolean }> = ({ successful }) => {
   return <primitive ref={iconRef} position={[0, 0.35, -0.5]} object={IconModel.scene} />;
 };
 const ContactFormConfirmation: FC<CFCProps> = ({ successful }) => {
+  const { progress } = useProgress();
   return (
     <ConfirmationContainer
       key="confirmation-card"
@@ -62,14 +63,17 @@ const ContactFormConfirmation: FC<CFCProps> = ({ successful }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.25 }}
     >
-      <div className="model-canvas">
+      <m.div className="model-canvas"       
+        initial={{ opacity: 0  }}
+        animate={{ opacity: progress === 100 ? 1 : 0  }}
+      >
         <Canvas gl={{ alpha: true }}>
           <pointLight position={[5, 10, 15]} intensity={0.35} />
           <pointLight position={[-5, 10, 15]} intensity={0.35} />
           <pointLight position={[0, -5, 5]} intensity={0.05} />
           <MailModel successful={successful} />
         </Canvas>
-      </div>
+      </m.div>
       <h2 className="confirmation-message">
         {successful ? (
           <>

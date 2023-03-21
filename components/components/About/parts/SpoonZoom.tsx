@@ -2,7 +2,7 @@ import { m } from "framer-motion";
 import { FC, SyntheticEvent, useRef } from "react";
 import styled from "styled-components";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useProgress } from "@react-three/drei";
 
 const SpoonZoomContainer = styled(m.div)`
   z-index: 5;
@@ -15,6 +15,7 @@ const SpoonZoomContainer = styled(m.div)`
   width: 100%;
   height: 100%;
   pointer-events: all;
+  backdrop-filter:blur(10px) brightness(0.7) grayscale(0.5);
 `;
 
 interface SZProps {
@@ -32,13 +33,15 @@ const Spoon = () => {
 
 const SpoonZoom: FC<SZProps> = ({ onClick }) => {
   const spoonZoomRef = useRef<HTMLDivElement>(null);
+  const { progress } = useProgress();
   return (
     <SpoonZoomContainer
       key="spoon-zoom-scene"
       id="spoon-zoom"
       ref={spoonZoomRef}
-      initial={{ backdropFilter: "blur(0px) brightness(1) grayscale(0)" }}
-      animate={{ backdropFilter: "blur(10px) brightness(0.7) grayscale(0.5)" }}
+      initial={{ opacity: 0  }}
+      animate={{ opacity: progress === 100 ? 1 : 0  }}
+      transition={{duration:0.2}}
       onClick={onClick}
     >
       <Canvas gl={{ alpha: true }}>
