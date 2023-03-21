@@ -1,5 +1,5 @@
 import { colors } from "@/styles/style-variables";
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState, Suspense } from "react";
 import styled from "styled-components";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
 import { useGLTF, useProgress } from "@react-three/drei";
@@ -14,6 +14,7 @@ const HeroShowcaseContainer = styled(m.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor:pointer;
 `;
 interface HSTypes {
   className?: string;
@@ -62,7 +63,6 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
     document.removeEventListener("mouseup", onMTEventEnd);
     document.removeEventListener("touchend", onMTEventEnd);
   };
-
   const onPressStart = () => {
     setSceneState((curr) => ({
       ...curr,
@@ -114,12 +114,15 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
       animate={{ opacity: progress === 100 ? 1 : 0 }}
       onMouseDown={onPressStart}
       onTouchStart={onPressStart}
+      transition= {{duration:0.5}}
     >
       <Canvas gl={{ alpha: true }}>
         <ambientLight intensity={0.15} />
         <pointLight position={[5, 10, 16]} intensity={0.5} />
         <pointLight position={[-5, 10, 16]} intensity={0.5} />
-        <ProfileModel hover={sceneState.hover} rotationX={sceneState.rotationX} eyeRotation={sceneState.eyeRotation} />
+        <Suspense fallback={null}>
+          <ProfileModel hover={sceneState.hover} rotationX={sceneState.rotationX} eyeRotation={sceneState.eyeRotation} />
+        </Suspense>
       </Canvas>
     </HeroShowcaseContainer>
   );

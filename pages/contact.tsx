@@ -1,6 +1,10 @@
 import { FC } from "react";
+import { useGLTF } from "@react-three/drei";
 import Seo from "../components/components/Seo";
 import ContactFormDisplay from "components/components/Contact/ContactFormDisplay";
+
+useGLTF.preload("/assets/mail-blue.glb");
+useGLTF.preload("/assets/mail-red.glb");
 
 const projects: FC = () => {
   return (

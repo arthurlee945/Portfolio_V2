@@ -1,6 +1,10 @@
 import { FC } from "react";
+import { useGLTF } from "@react-three/drei";
 import Seo from "../components/components/Seo";
 import AboutDisplay from "components/components/About/AboutDisplay";
+
+useGLTF.preload("/assets/spoon.glb");
+
 
 const projects: FC = () => {
   return (

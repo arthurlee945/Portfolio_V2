@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { Fragment, ReactNode, useEffect } from "react";
+import { Fragment, ReactNode } from "react";
 import { AnimatePresence, LazyMotion, domAnimation, motion } from "framer-motion";
 
 interface Props {
@@ -19,13 +19,13 @@ const Layout: React.FC<Props> = ({ children }) => {
     <>
       <Header />
       <LazyMotion features={domAnimation}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence initial={false} mode="wait">
           <Fragment key={router.asPath}>
             <Main
               id="main"
-              initial={{ y: "5%", opacity: 0 }}
-              animate={{ y: "0%", opacity: 1, transitionEnd: { y: "0%", opacity: 1 } }}
-              exit={{ y: "5%", opacity: 0, transitionEnd: { y: "5%", opacity: 0 } }}
+              initial={{  opacity: 0 }}
+              animate={{ opacity: 1, transitionEnd: {  opacity: 1 } }}
+              exit={{ y: "5%", opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
               {children}
