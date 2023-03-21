@@ -2,6 +2,7 @@ import { createGlobalStyle, css } from "styled-components";
 import { colors } from "./style-variables";
 interface GSTypes {
   navState?: boolean;
+  lockState?: boolean;
 }
 export const GlobalStyle = createGlobalStyle<GSTypes>`
   * {
@@ -35,6 +36,11 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   @media only screen and (min-width: 501px) and (max-width: 1100px) {
     body{
       padding:15px;
+      ${({ lockState }) =>
+        lockState &&
+        css`
+          overflow: hidden;
+        `}
     }
     #__next{
       min-height: calc(100vh - 40px);
@@ -43,8 +49,8 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
   @media only screen and (max-width: 500px) {
     body{
       padding:10px;
-      ${({ navState }) =>
-        navState &&
+      ${({ navState, lockState }) =>
+        (navState || lockState) &&
         css`
           overflow: hidden;
         `}

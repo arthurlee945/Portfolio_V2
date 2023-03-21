@@ -1,13 +1,14 @@
 import { colors, medias, underline } from "@/styles/style-variables";
 import AosElement from "components/reusable/AosElement";
 import HighlightLink from "components/reusable/HighlightLink";
-import { FC, useRef, useState } from "react";
+import { FC, useContext, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 import { HTMLMotionProps } from "framer-motion";
 import { useViewPortTracker } from "utils/custom-hooks";
 import { throttle } from "utils/throttle-functions";
 import Link from "next/link";
 import HighlightText from "./HighlightText";
+import { GlobalContext } from "utils/GlobalContext";
 
 type SCProps = { $cardImage: string; $bgPos: { x: string; y: string }; $viewStarted: boolean; $viewport: string };
 const FeaturedCardContainer = styled(AosElement)<SCProps>`
@@ -216,6 +217,7 @@ type CardStateProps = {
   imgViewStarted: boolean;
 };
 const FeaturedCard: FC<CardType> = ({ data, delay = 0, className, ...rest }) => {
+  const globalCtx = useContext(GlobalContext);
   const vpTracker = useViewPortTracker();
   const cardRef = useRef<HTMLDivElement>(null);
   const [cardStatus, setCardStatus] = useState<CardStateProps>({ imgPos: { x: "50%", y: "50%" }, imgViewStarted: false });
@@ -234,6 +236,7 @@ const FeaturedCard: FC<CardType> = ({ data, delay = 0, className, ...rest }) => 
     document.addEventListener("touchend", onMTEventEnd);
     document.addEventListener("mousemove", onMTEventMove);
     document.addEventListener("touchmove", onMTEventMove);
+    globalCtx.setViewPortLock("opened");
   };
   const onMTEventMove = throttle<MouseEvent | TouchEvent>((eve: MouseEvent | TouchEvent) => {
     let { top, right, bottom, left } = (cardRef.current as HTMLDivElement).getBoundingClientRect();
@@ -259,6 +262,7 @@ const FeaturedCard: FC<CardType> = ({ data, delay = 0, className, ...rest }) => 
       imgViewStarted: false,
     }));
     removeListeners();
+    globalCtx.setViewPortLock("closed");
   };
 
   return (
