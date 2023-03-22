@@ -13,23 +13,22 @@ const MotionScrollDiv: FC<MSDProps> = ({ children, scrollDir = "down", className
     target: ref,
     offset: ["0 0", "1 0"],
   });
-  const scrollPercentage = useTransform(
+  const scrollUpDown = useTransform(
     scrollYProgress,
     [0, 1],
-    scrollDir === "up" || scrollDir === "left" ? ["0%", "-115%"] : ["0%", "115%"]
+    scrollDir === "up" ? ["0%", "-115%"] : ["0%", "115%"]
   );
-  const scrollPlaceholder = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
+  const scrollLeftRight = useTransform(scrollYProgress, [0, 1], scrollDir === "left" ? ["0%", "-115%"] : ["0%", "115%"]);
 
   const directionMemo = useMemo(() => {
     if (scrollDir === "up" || scrollDir === "down") {
-      return { x: scrollPlaceholder, y: scrollPercentage };
+      return { y: scrollUpDown, x:0 };
     } else {
-      return { x: scrollPercentage, y: scrollPlaceholder };
+      return { x: scrollLeftRight, y:0 };
     }
   }, [scrollDir]);
-
   return (
-    <m.div key={className} ref={ref} className={className} style={{ ...directionMemo }}>
+    <m.div key={className} ref={ref} className={className} style={{ ...directionMemo }} >
       {children}
     </m.div>
   );

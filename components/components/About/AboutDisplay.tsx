@@ -188,7 +188,7 @@ const AboutDisplay: FC<ADProps> = ({}) => {
         role="button"
         tabIndex={profile.clicked ? -1 : 0}
       >
-        <Image src={profile.image} alt="Arthur Lee Profile Image" fill sizes={"100%"} />
+        <Image src={profile.image} alt="Arthur Lee Profile Image" fill sizes={"100%"} priority quality={100} />
         {profile.clicked && <SpoonZoom onClick={handleImageClick} />}
       </m.div>
     </AboutDisplayContainer>
