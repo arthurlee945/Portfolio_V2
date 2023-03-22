@@ -73,7 +73,7 @@ const Introduction: FC<IntroductionProps> = ({}) => {
     <IntroductionContainer>
       <ScrollBoard>Let's Create Something Extraordinary! Contact Me Today and Let's Get Started.</ScrollBoard>
       <div className="introduction-infos">
-        <AosElement direction="right" className="info-box">
+        <AosElement direction="right" className="info-box" viewport={{ amount: 0.5 }}>
           <h2 className="info-header" aria-label="Let's Do This!">
             <HighlightText fragment={true}>Let's Do This! </HighlightText>
           </h2>
@@ -86,7 +86,7 @@ const Introduction: FC<IntroductionProps> = ({}) => {
             Contact Me!
           </ArrowLink>
         </AosElement>
-        <AosElement direction="left" transition={{ delay: 0.25 }} className="info-box">
+        <AosElement direction="left" transition={{ delay: 0.25 }} viewport={{ amount: 0.5 }} className="info-box">
           <h2 className="info-header" aria-label="About Me!">
             <HighlightText fragment={true}>About Me!</HighlightText>
           </h2>

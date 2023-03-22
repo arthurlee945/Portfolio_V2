@@ -184,7 +184,14 @@ const Header: FC = () => {
     let prevPosY = 0;
     const handleNavSticky = throttle<unknown>(() => {
       const posY = window.scrollY;
-      if (posY === 0) return;
+      if (posY === 0) {
+        !navState.sticky &&
+          setNavState((currState) => ({
+            ...currState,
+            sticky: true,
+          }));
+        return;
+      }
       if (posY > prevPosY) {
         setNavState((currState) => ({
           ...currState,
@@ -192,7 +199,7 @@ const Header: FC = () => {
           ariaHidden: true,
           ariaPressed: false,
         }));
-        globalCtx.setNavStatus("closed");
+        globalCtx.navState && globalCtx.setNavStatus("closed");
       } else {
         setNavState((currState) => ({
           ...currState,

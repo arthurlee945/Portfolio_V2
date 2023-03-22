@@ -1,11 +1,10 @@
 import { colors } from "@/styles/style-variables";
-import { FC, useContext, useEffect, useRef, useState, Suspense } from "react";
+import { FC, useEffect, useRef, useState, Suspense } from "react";
 import styled from "styled-components";
 import { Canvas, useFrame, ThreeElements } from "@react-three/fiber";
 import { useGLTF, useProgress } from "@react-three/drei";
 import { m } from "framer-motion";
 import { throttle } from "utils/throttle-functions";
-import { GlobalContext } from "utils/GlobalContext";
 
 const HeroShowcaseContainer = styled(m.div)`
   width: 100%;
@@ -14,7 +13,6 @@ const HeroShowcaseContainer = styled(m.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 `;
 interface HSTypes {
   className?: string;
@@ -46,7 +44,6 @@ const ProfileModel: FC<ProfileProps> = ({ hover, rotationX, eyeRotation }) => {
 
 const HeroShowcase: FC<HSTypes> = ({}) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const globalCtx = useContext(GlobalContext);
   const [sceneState, setSceneState] = useState({
     hover: false,
     rotationX: 0,
@@ -57,30 +54,33 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
   });
   const { progress } = useProgress();
 
-  const resetEventListener = () => {
-    document.removeEventListener("mousemove", onMTEventMove);
-    document.removeEventListener("touchmove", onMTEventMove);
-    document.removeEventListener("mouseup", onMTEventEnd);
-    document.removeEventListener("touchend", onMTEventEnd);
-  };
-  const onPressStart = () => {
+  const onHoverState = (state: "start" | "end") => {
+    const eyeRotation =
+      state === "end"
+        ? {
+            eyeRotation: {
+              x: 0,
+              y: 0,
+            },
+          }
+        : {};
     setSceneState((curr) => ({
       ...curr,
-      hover: true,
+      hover: state === "start" ? true : false,
+      ...eyeRotation,
     }));
-    document.addEventListener("mouseup", onMTEventEnd);
-    document.addEventListener("touchend", onMTEventEnd);
-    document.addEventListener("mousemove", onMTEventMove);
-    document.addEventListener("touchmove", onMTEventMove);
-    globalCtx.setViewPortLock("opened");
+    if (state === "start") {
+      document.addEventListener("mousemove", onEventMove);
+    } else {
+      document.removeEventListener("mousemove", onEventMove);
+    }
   };
-  const onMTEventMove = throttle<MouseEvent | TouchEvent>((eve: MouseEvent | TouchEvent) => {
+  const onEventMove = throttle<MouseEvent>((eve: MouseEvent) => {
     let { top, right, bottom, left } = (containerRef.current as HTMLDivElement).getBoundingClientRect();
-    let relativeX = eve.type === "mousemove" ? (eve as MouseEvent).clientX : (eve as TouchEvent).touches[0].clientX;
-    let relativeY = eve.type === "mousemove" ? (eve as MouseEvent).clientY : (eve as TouchEvent).touches[0].clientY;
+    let relativeX = (eve as MouseEvent).clientX;
+    let relativeY = (eve as MouseEvent).clientY;
     if (relativeY < Math.floor(top) || relativeY > Math.floor(bottom) || relativeX < Math.floor(left) || relativeX > Math.floor(right)) {
-      resetEventListener();
-      onMTEventEnd();
+      onHoverState("end");
       return;
     }
     let diffX = -1 + ((relativeX - left) / (right - left)) * 2;
@@ -94,25 +94,14 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
       },
     }));
   }, 25);
-  const onMTEventEnd = (event?: MouseEvent | TouchEvent) => {
-    setSceneState((curr) => ({
-      ...curr,
-      hover: false,
-      eyeRotation: {
-        x: 0,
-        y: 0,
-      },
-    }));
-    resetEventListener();
-    globalCtx.setViewPortLock("closed");
-  };
+
   return (
     <HeroShowcaseContainer
       ref={containerRef}
       style={{ opacity: 0 }}
       animate={{ opacity: progress === 100 ? 1 : 0 }}
-      onMouseDown={onPressStart}
-      onTouchStart={onPressStart}
+      onHoverStart={onHoverState.bind(null, "start")}
+      onHoverEnd={onHoverState.bind(null, "end")}
       transition={{ duration: 0.4 }}
     >
       <Canvas gl={{ alpha: true }}>
