@@ -14,7 +14,7 @@ const HeroShowcaseContainer = styled(m.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor:pointer;
+  cursor: pointer;
 `;
 interface HSTypes {
   className?: string;
@@ -106,7 +106,6 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
     resetEventListener();
     globalCtx.setViewPortLock("closed");
   };
-
   return (
     <HeroShowcaseContainer
       ref={containerRef}
@@ -114,7 +113,7 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
       animate={{ opacity: progress === 100 ? 1 : 0 }}
       onMouseDown={onPressStart}
       onTouchStart={onPressStart}
-      transition= {{duration:0.4}}
+      transition={{ duration: 0.4 }}
     >
       <Canvas gl={{ alpha: true }}>
         <ambientLight intensity={0.15} />
