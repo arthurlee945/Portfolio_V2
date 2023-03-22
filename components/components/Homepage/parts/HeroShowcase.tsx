@@ -99,10 +99,11 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
     <HeroShowcaseContainer
       ref={containerRef}
       style={{ opacity: 0 }}
-      animate={{ opacity: progress === 100 ? 1 : 0 }}
+      whileInView={{ opacity: progress === 100 ? 1 : 0 }}
       onHoverStart={onHoverState.bind(null, "start")}
       onHoverEnd={onHoverState.bind(null, "end")}
       transition={{ duration: 0.4 }}
+      viewport={{ once: true }}
     >
       <Canvas gl={{ alpha: true }}>
         <ambientLight intensity={0.15} />

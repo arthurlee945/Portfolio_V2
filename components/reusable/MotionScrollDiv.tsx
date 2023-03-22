@@ -22,13 +22,14 @@ const MotionScrollDiv: FC<MSDProps> = ({ children, scrollDir = "down", className
 
   const directionMemo = useMemo(() => {
     if (scrollDir === "up" || scrollDir === "down") {
-      return { y: scrollPercentage, x: scrollPlaceholder };
+      return { x: scrollPlaceholder, y: scrollPercentage };
     } else {
       return { x: scrollPercentage, y: scrollPlaceholder };
     }
   }, [scrollDir]);
+  console.log(directionMemo);
   return (
-    <m.div ref={ref} className={className} style={{ transform: "translateY(0)", ...directionMemo }}>
+    <m.div ref={ref} className={className} style={{ ...directionMemo }}>
       {children}
     </m.div>
   );
