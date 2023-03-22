@@ -93,7 +93,7 @@ const HeroShowcase: FC<HSTypes> = ({}) => {
         y: diffY,
       },
     }));
-  }, 25);
+  }, 15);
 
   return (
     <HeroShowcaseContainer
