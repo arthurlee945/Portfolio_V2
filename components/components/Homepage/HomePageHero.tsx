@@ -146,9 +146,9 @@ const HomePageHero: FC<HeroProps> = ({}) => {
       <div className="hero-container">
         <MotionScrollDiv className="hero-content--left" scrollDir={scrollDirMemo.left.dir}>
           <h1 className="hero-header">
-            Hi, My
+            Hi, my
             <br />
-            Name is <b>Arthur</b>.
+            name is <b>Arthur</b>.
           </h1>
           <HighlightLink href="/about" underline={false} className="hero-subHeader">
             I am a Developer based in Chicago
