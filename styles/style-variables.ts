@@ -3,7 +3,7 @@ import { css } from "styled-components";
 export const medias = {
   maxDesktop: 1920,
   tablet: 1100,
-  phone: 500,
+  phone: 600,
 };
 
 export const colors = {
