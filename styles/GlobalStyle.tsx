@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
     min-height: calc(100vh - 50px);
   }
 
-  @media only screen and (min-width: 501px) and (max-width: 1100px) {
+  @media only screen and (min-width: 601px) and (max-width: 1100px) {
     body{
       padding:15px;
       ${({ lockState }) =>
@@ -46,7 +46,7 @@ export const GlobalStyle = createGlobalStyle<GSTypes>`
       min-height: calc(100vh - 40px);
     }
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 600px) {
     body{
       padding:10px;
       ${({ navState, lockState }) =>
