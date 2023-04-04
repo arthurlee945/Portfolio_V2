@@ -1,3 +1,3 @@
 <h1>Arthur Lee Portfolio V2</h1>
 
-More information will be added on completion
+<a href="https://arthurlee.bio" target="_blank">Live Site</>
