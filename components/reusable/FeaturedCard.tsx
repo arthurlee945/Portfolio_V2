@@ -106,6 +106,7 @@ const FeaturedCardContainer = styled(AosElement)<SCProps>`
     }
     .card-tags {
       display: flex;
+      justify-content: space-evenly;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;

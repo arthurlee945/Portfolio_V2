@@ -1,6 +1,13 @@
 {
   "data":{
     "work":[{
+      "id":"beggars-pizza",
+      "name":"Beggar's Pizza",
+      "img":"/project-images/beggars-pizza.webp",
+      "url":"https://www.beggarspizza.com/",
+      "tools":["Next.js","Headless CMS", "PostgreSQL"],
+      "desc":"Website created with Next.JS as frontend and Strapi and PostgreSQL as backend framework."
+    },{
       "id":"classic-mechanics",
       "name":"Classic Mechanics",
       "img":"/project-images/classic-mechanics.webp",
@@ -14,6 +21,13 @@
       "url":"https://dotsecurity.com/",
       "tools":["Next.js", "Headless CMS", "PostgreSQL"],
       "desc":"Website created with Next.JS as frontend and Strapi and PostgreSQL as backend framework alongside other external apis"
+    },{
+      "id":"iron-wolf-SignIn",
+      "name":"Iron Wolf SignIn",
+      "img":"/project-images/iron-wolf-SignIn.webp",
+      "url":"https://github.com/the-agency-gh/iron-wolf-check-in",
+      "tools":["React Native", "Expo", "SQLite", "Next.js"],
+      "desc":"Application for Iron Wolf Fitness Club check in system"
     },{
       "id":"zenar-crane",
       "name":"Zenar Crane",
