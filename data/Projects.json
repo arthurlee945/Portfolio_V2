@@ -42,6 +42,13 @@
       "url":"https://inspireautomation.com/",
       "tools":["php", "Wordpress CMS"],
       "desc":"Site for automation manufacturer created using custom template with Wordpress CMS"
+    },{
+      "id":"cukierski-n-associates",
+      "name":"Cukierski & Associates LLC",
+      "img":"/project-images/cukierski.webp",
+      "url":"https://cukierski.cpa/",
+      "tools":["php", "Wordpress CMS"],
+      "desc":"Site for CPA created using custom template with Wordpress CMS"
     }],
     "personal":[{
       "id":"color-pallete-detector",
