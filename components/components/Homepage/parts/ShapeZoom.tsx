@@ -14,7 +14,6 @@ const ShapeZoomContainer = styled.div<{ $sceneState: boolean; $playing: boolean;
   flex: 1;
   aspect-ratio: 1/0.3;
   overflow: hidden;
-  cursor: pointer;
   @media only screen and (min-width: ${medias.phone + 1 + "px"}) and (max-width: ${medias.tablet + "px"}) {
     aspect-ratio: 1/0.35;
   }
