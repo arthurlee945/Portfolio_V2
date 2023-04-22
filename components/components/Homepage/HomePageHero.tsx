@@ -148,7 +148,7 @@ const HomePageHero: FC<HeroProps> = ({}) => {
           <h1 className="hero-header">
             Hi, my
             <br />
-            name is <b>Arthur</b>.
+            name is Arthur.
           </h1>
           <HighlightLink href="/about" underline={false} className="hero-subHeader">
             I am a Developer based in Chicago
