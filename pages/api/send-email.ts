@@ -8,7 +8,7 @@ type Data = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  const data = req.body;
+  const {name, email, message} = req.body;
   if(!name || !email) res.status(406).json({ status: 406, message: "Required fields are not provided" });
   try {
     const transporter = nodemailer.createTransport({
@@ -22,9 +22,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const mailOptions = {
       from: process.env.NEXT_PUBLIC_EMAIL,
       to: process.env.NEXT_PUBLIC_EMAIL,
-      subject: `Portfolio Form Submission from ${data.name}`,
-      text: `Email: ${data.email}
-      Message: ${data.message}`,
+      subject: `Portfolio Form Submission from ${name}`,
+      text: `Email: ${email}
+      Message: ${message}`,
     };
     await transporter.sendMail(mailOptions);
     res.status(200).json({ status: 200, message: "Email Sent" });
