@@ -9,6 +9,7 @@ type Data = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const data = req.body;
+  if(!name || !email) res.status(406).json({ status: 406, message: "Required fields are not provided" });
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
